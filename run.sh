@@ -3,8 +3,8 @@
 
 echo -e "\n\rCompiling...\n\r"
 
-mcs ./source/core/Main.cs -out:./assembly/Main.exe
+g++  source/Main.cpp source/objects/*.cpp -o ./build/MainCPP.exe --std=c++14 -Wall
 
 echo -e "\n\rCompiled\n\r\n\r"
 
-./assembly/Main.exe
+./build/MainCPP.exe
