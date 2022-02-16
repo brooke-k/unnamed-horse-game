@@ -279,7 +279,7 @@ public:
     gestating = isGestating;
   }
 
-  //  std::ostream &healthStream();
+  void addHealthStream(std::ostream &os);
   // friend std::ostream &
   // operator>>(std::ostream &os, Health &h);
 };

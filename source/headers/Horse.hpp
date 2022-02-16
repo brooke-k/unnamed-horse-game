@@ -28,7 +28,6 @@ public:
   char *getName() const;
   int getAge();
   char getSex();
-  Health getHealth();
   void setName(char *name, int length);
   void setAge(int age);
   void setSex(char sex);
@@ -37,6 +36,8 @@ public:
   virtual char *getVariant() const;
 
   Horse(char *name, int length, char sex, int age = -1, const char *variant = "N/A");
+  void addHorseStream(std::ostream &os);
+
   virtual ~Horse();
   Horse &operator=(Horse &src);
   Horse(Horse &src);

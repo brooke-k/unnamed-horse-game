@@ -12,10 +12,7 @@ using namespace std;
 
 std::ostream &operator<<(std::ostream &os, TeraHorse &horse)
 {
-  os << "  Name: " << horse.getName() << endl;
-  os << "  Varient: " << horse.getVariant() << endl;
-  os << "  Age: " << horse.getAge() << endl;
-  os << "  Sex: " << horse.getSex() << endl;
+  Horse tempHorse(horse);
   os << "  Broke: ";
   horse.isBroke() ? os << "Yes" : os << "No";
   os << endl;

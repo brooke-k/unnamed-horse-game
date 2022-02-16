@@ -10,7 +10,32 @@
 
 using namespace std;
 
-// ostream &operator>>(ostream &os, Health &h)
+ostream &operator>>(ostream &os, Health &h)
+{
+  os << "HEALTH REPORT" << endl;
+  h.addHealthStream(os);
+  os << "End of Health Report." << endl;
+  return os;
+}
+
+void Health::addHealthStream(std::ostream &os)
+{
+  os << "    Height(hh): ";
+  (getHeight() < (float)0) ? os << "N/A" << endl : os << getHeight() << endl;
+  os << "    Weight(kg): ";
+  (getWeight() < (float)0) ? os << "N/A" << endl : os << getWeight() << endl;
+  os << "    Happiness: " << getHappiness() << endl;
+  os << "    Hunger: " << getHunger() << endl;
+  os << "    Thirst: " << getThirst() << endl;
+  os << "    Fitness: " << getFitness() << endl;
+  os << "    Energy: " << getSleep() << endl;
+  os << "    Grooming: " << getGrooming() << endl;
+  os << "    Gestating: ";
+  (isGestating()) ? os << "YES" << endl : os << "NO" << endl;
+  return;
+}
+
+// ostream &Health::healthStream(ostream &os)
 // {
 //   os << "Health Report:" << endl;
 //   os << "  Height: " << h.getHeight() << "hh" << endl;
@@ -24,12 +49,5 @@ using namespace std;
 //   os << "  Gestating: ";
 //   (h.isGestating()) ? os << "Yes" << endl : os << "No" << endl;
 //   os << "End of Health Report." << endl;
-//   return os;
-// }
-
-// ostream &Health::healthStream()
-// {
-//   ostream os();
-//   os << *this << endl;
 //   return os;
 // }
