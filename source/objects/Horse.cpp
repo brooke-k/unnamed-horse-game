@@ -63,11 +63,11 @@ Horse::Horse(Horse &src)
 
 std::ostream &operator<<(std::ostream &os, Horse &horse)
 {
-  horse.addHorseStream(os);
+  horse.horseStream(os);
   return os;
 }
 
-void Horse::addHorseStream(ostream &os)
+void Horse::horseStream(ostream &os)
 {
   os << endl
      << endl;
@@ -78,7 +78,7 @@ void Horse::addHorseStream(ostream &os)
   os << "    Age: " << getAge() << endl;
   os << "    Sex: " << getSex() << endl;
   os << "  Health Info: " << endl;
-  addHealthStream(os);
+  healthStream(os);
   return;
 }
 

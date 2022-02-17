@@ -13,12 +13,12 @@ using namespace std;
 ostream &operator>>(ostream &os, Health &h)
 {
   os << "HEALTH REPORT" << endl;
-  h.addHealthStream(os);
+  h.healthStream(os);
   os << "End of Health Report." << endl;
   return os;
 }
 
-void Health::addHealthStream(std::ostream &os)
+void Health::healthStream(std::ostream &os)
 {
   os << "    Height(hh): ";
   (getHeight() < (float)0) ? os << "N/A" << endl : os << getHeight() << endl;

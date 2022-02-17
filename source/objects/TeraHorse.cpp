@@ -12,7 +12,7 @@ using namespace std;
 
 std::ostream &operator<<(std::ostream &os, TeraHorse &horse)
 {
-  horse.addTeraHorseStream(os);
+  horse.teraHorseStream(os);
   return os;
 }
 
@@ -26,9 +26,9 @@ bool TeraHorse::isBroke()
   return this->broke;
 }
 
-void TeraHorse::addTeraHorseStream(ostream &os)
+void TeraHorse::teraHorseStream(ostream &os)
 {
-  addHorseStream(os);
+  horseStream(os);
   os << "  Tera Horse Info:" << endl;
   os << "    Broke: ";
   isBroke() ? os << "Yes" : os << "No";

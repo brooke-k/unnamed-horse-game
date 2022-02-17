@@ -90,7 +90,7 @@ public:
    *
    * @param os
    */
-  void addTeraHorseStream(std::ostream &os);
+  void teraHorseStream(std::ostream &os);
 
   /**
    * @brief Ostream insertion operator overload

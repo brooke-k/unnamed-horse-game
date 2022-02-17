@@ -26,7 +26,7 @@ private:
   bool gestating;
 
 protected:
-  void addHealthStream(std::ostream &os);
+  void healthStream(std::ostream &os);
 
 public:
   /**

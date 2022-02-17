@@ -8,6 +8,7 @@
 #include <cstring>
 #include <ostream>
 #include "Health.hpp"
+#include "Equipment.hpp"
 
 #define VARIANT_SIZE 4
 
@@ -23,6 +24,7 @@ protected:
   int age;  // Value < 0 signifies an unknown age
   char sex; // To be uppercase only
   int nameLength;
+  Equipment equipment;
   // NOT IMPLEMENTED YET
   // HorseVariant variant;
   // Lineage lineage;
@@ -93,7 +95,7 @@ public:
    *
    * @param os
    */
-  void addHorseStream(std::ostream &os);
+  void horseStream(std::ostream &os);
 
   /**
    * @brief Destroy the Horse
@@ -113,4 +115,7 @@ public:
    * @param src
    */
   Horse(Horse &src);
+
+  Equipment getEquipment();
+  Equipment setEquipment();
 };

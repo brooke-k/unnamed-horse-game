@@ -5,72 +5,70 @@
  *
  */
 
-typedef struct EquipmentType
+enum EquipType
 {
-  enum Type
-  {
-    bridle = 0,
-    saddle = 1,
-    blanket = 2,
-    boots = 3,
-    shoes = 4,
-    head = 5,
-    body = 6,
-    legs = 7,
-    bag = 8,
-    decor = 9
-  };
-} EquipType;
+  bridle = 0,
+  saddle = 1,
+  blanket = 2,
+  boots = 3,
+  shoes = 4,
+  head = 5,
+  body = 6,
+  legs = 7,
+  bag = 8,
+  decor = 9
+};
 
-typedef struct EquipmentMaterial
+enum EquipMatrl
 {
-  enum Material
-  {
-    leather = 0,
-    nylon = 1,
-    twine = 2,
-    polyester = 3,
-    sheepskin = 4,
-  };
-} EquipMatrl;
+  leather = 0,
+  nylon = 1,
+  twine = 2,
+  polyester = 3,
+  sheepskin = 4,
 
-typedef struct EquipmentColour
+};
+
+enum EquipColour
 {
-  enum BrightColour
-  {
-    red = 0,
-    orange = 1,
-    yellow = 2,
-    green = 3,
-    cyan = 4,
-    blue = 5,
-    indigo = 6,
-    purple = 7,
-    pink = 8,
-    white = 9,
-    grey = 10,
-    black = 11,
-  };
-  enum EarthColour
-  {
-    balsa = 0,
-    pine = 1,
-    alder = 2,
-    elm = 3,
-    cedar = 4,
-    sweetgum = 5,
-    walnut = 6,
-    rosewood = 7,
-    ebony = 8,
-  };
-  enum MetalColour
-  {
-    silver = 0,
-    gold = 1,
-    copper = 2,
-    brass = 3,
-    titanium = 4,
-    palladium = 5,
-    tungsten = 6
-  };
-} EquipColour;
+  transparent = 0,
+
+  red = 1,
+  orange = 2,
+  yellow = 3,
+  green = 4,
+  cyan = 5,
+  blue = 6,
+  indigo = 7,
+  purple = 8,
+  pink = 9,
+  white = 10,
+  grey = 11,
+  black = 12,
+
+  balsa = 20,
+  pine = 21,
+  alder = 22,
+  elm = 23,
+  cedar = 24,
+  sweetgum = 25,
+  walnut = 26,
+  rosewood = 27,
+  ebony = 28,
+
+  silver = 30,
+  gold = 31,
+  copper = 32,
+  brass = 33,
+  titanium = 34,
+  palladium = 35,
+  tungsten = 36
+};
+
+class EquipmentEnums
+{
+public:
+  static std::string toString(EquipType t);
+  static std::string toString(EquipColour c);
+  static std::string toString(EquipMatrl m);
+};

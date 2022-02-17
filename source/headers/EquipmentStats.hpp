@@ -49,6 +49,6 @@ public:
   int getComfort();
   int getOverall();
 
-  void getEquipStatStream(std::ostream &os);
+  void equipStatStream(std::ostream &os);
   friend std::ostream &operator<<(std::ostream &os, EquipmentStats &eq);
 } EquipStats;

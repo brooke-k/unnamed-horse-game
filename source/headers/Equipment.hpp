@@ -15,6 +15,7 @@ typedef class Equipment : public EquipmentStats
 private:
   std::string name;
   EquipType type;
+  EquipMatrl material;
   std::vector<EquipColour> colours;
 
 public:
@@ -59,11 +60,14 @@ public:
   std::string getName() const;
   void setName(std::string);
   EquipType getType();
+  EquipMatrl getMaterial();
   std::vector<EquipColour> getColours();
   void addColour(EquipColour colour);
   void removeColour(EquipColour colour);
   void setColours(std::vector<EquipColour> colours);
   bool isColour(EquipColour colour);
   bool isMulticolour();
+  void equipStream(ostream &os);
+  friend std::ostream &operator<<(std::ostream &os, Equipment &e);
 
 } Equip;

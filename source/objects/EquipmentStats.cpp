@@ -45,7 +45,7 @@ int EquipStats::getOverall()
   return overall;
 }
 
-void EquipStats::getEquipStatStream(ostream &os)
+void EquipStats::equipStatStream(ostream &os)
 {
   os << "  Equipment Statistics" << endl;
   os << "    Speed: " << getSpeed() << endl;
@@ -60,6 +60,6 @@ void EquipStats::getEquipStatStream(ostream &os)
 
 ostream &operator<<(ostream &os, EquipmentStats &eq)
 {
-  eq.getEquipStatStream(os);
+  eq.equipStatStream(os);
   return os;
 }
