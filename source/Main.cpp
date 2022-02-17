@@ -17,5 +17,8 @@ int main(void)
   cout << beefHorse;
   cout << beep;
 
+  Horse beepersBeef(beep);
+  cout << beepersBeef;
+
   return 0;
 }

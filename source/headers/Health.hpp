@@ -25,6 +25,9 @@ private:
   int boredomRating;
   bool gestating;
 
+protected:
+  void addHealthStream(std::ostream &os);
+
 public:
   /**
    * @brief Construct a new Health object
@@ -279,7 +282,5 @@ public:
     gestating = isGestating;
   }
 
-  void addHealthStream(std::ostream &os);
-  // friend std::ostream &
-  // operator>>(std::ostream &os, Health &h);
+  friend std::ostream &operator>>(std::ostream &os, Health &h);
 };

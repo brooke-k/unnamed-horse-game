@@ -64,7 +64,6 @@ Horse::Horse(Horse &src)
 
 std::ostream &operator<<(std::ostream &os, Horse &horse)
 {
-  os << "/------ HORSE REPORT ------\\" << endl;
   horse.addHorseStream(os);
   // os << "    Height: " << horse.getHeight() << "hh" << endl;
   // os << "    Weight: " << horse.getWeight() << "kg" << endl;
@@ -76,16 +75,14 @@ std::ostream &operator<<(std::ostream &os, Horse &horse)
   // os << "    Grooming: " << horse.getGrooming() << endl;
   // os << "    Gestating: ";
   // (horse.isGestating()) ? os << "Yes" << endl : os << "No" << endl;
-
-  os << "\\----END OF HORSE REPORT ---/" << endl
-     << endl;
-  ;
-
   return os;
 }
 
 void Horse::addHorseStream(ostream &os)
 {
+  os << endl
+     << endl;
+  os << "/------ HORSE REPORT ------\\" << endl;
   os << "  Basic Info:" << endl;
   os << "    Name: " << getName() << endl;
   os << "    Variant: " << getVariant() << endl;
