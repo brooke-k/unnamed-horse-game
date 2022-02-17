@@ -1,13 +1,12 @@
 /**
- * File: Horse.cpp
- * @author Brooke Kindleman (brooke.kindleman@gmail.com)
- * Date: 27/Jan/2022
+ * @file Horse.cpp
+ * @author Brooke Kindleman (brooke.kindleman@gmail.com) @brooke-k
+ * @date 16/Feb/2022
  *
  */
 
-#include "../headers/Horse.hpp"
-
 #include <iostream>
+#include "../headers/Horse.hpp"
 
 using namespace std;
 
@@ -65,16 +64,6 @@ Horse::Horse(Horse &src)
 std::ostream &operator<<(std::ostream &os, Horse &horse)
 {
   horse.addHorseStream(os);
-  // os << "    Height: " << horse.getHeight() << "hh" << endl;
-  // os << "    Weight: " << horse.getWeight() << "kg" << endl;
-  // os << "    Happiness: " << horse.getHappiness() << endl;
-  // os << "    Hunger: " << horse.getHunger() << endl;
-  // os << "    Thirst: " << horse.getThirst() << endl;
-  // os << "    Fitness: " << horse.getFitness() << endl;
-  // os << "    Energy: " << horse.getSleep() << endl;
-  // os << "    Grooming: " << horse.getGrooming() << endl;
-  // os << "    Gestating: ";
-  // (horse.isGestating()) ? os << "Yes" << endl : os << "No" << endl;
   return os;
 }
 

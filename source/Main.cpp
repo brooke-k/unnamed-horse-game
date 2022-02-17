@@ -1,7 +1,7 @@
 /**
- * File: Main.cpp
- * @author Brooke Kindleman (brooke.kindleman@gmail.com)
- * Date: 27/Jan/2022
+ * @file Main.cpp
+ * @author Brooke Kindleman (brooke.kindleman@gmail.com) @brooke-k
+ * @date 16/Feb/2022
  *
  */
 

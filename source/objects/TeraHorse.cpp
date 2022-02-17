@@ -1,7 +1,7 @@
 /**
- * File: TeraHorse.cpp
- * @author Brooke Kindleman (brooke.kindleman@gmail.com)
- * Date: 27/Jan/2022
+ * @file TeraHorse.cpp
+ * @author Brooke Kindleman (brooke.kindleman@gmail.com) @brooke-k
+ * @date 16/Feb/2022
  *
  */
 
@@ -16,9 +16,9 @@ std::ostream &operator<<(std::ostream &os, TeraHorse &horse)
   return os;
 }
 
-void TeraHorse::setBroke(bool broke)
+void TeraHorse::setBroke(bool isBroke)
 {
-  this->broke = broke;
+  this->broke = isBroke;
 }
 
 bool TeraHorse::isBroke()
