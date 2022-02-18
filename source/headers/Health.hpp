@@ -63,15 +63,15 @@ public:
    * @param boredomRating Integer equine boredom rating on a scale of 1 to 10
    * @param gestating If the equine is gestating (pregnant). Boolean value.
    */
-  Health(float handsHeight, float weightKg, int fitnessRating, int happinessRating, int hungerRating, int thirstRating, int groomingRating, int energyRating, int boredomRating, bool gestating)
+  Health(float handsHeight, float weightKg = -1, int fitnessRating = 1, int energyRating = 1, int thirstRating = 1, int hungerRating = 1, int happinessRating = 1, int groomingRating = 1, int boredomRating = 1, bool gestating = false)
   {
     this->handsHeight = handsHeight;
     this->weightKg = weightKg;
-    this->happinessRating = happinessRating;
-    this->hungerRating = hungerRating;
-    this->thirstRating = thirstRating;
-    this->groomingRating = groomingRating;
     this->energyRating = energyRating;
+    this->thirstRating = thirstRating;
+    this->hungerRating = hungerRating;
+    this->happinessRating = happinessRating;
+    this->groomingRating = groomingRating;
     this->boredomRating = boredomRating;
     this->gestating = gestating;
   }

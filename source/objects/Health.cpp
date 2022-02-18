@@ -24,13 +24,13 @@ void Health::healthStream(std::ostream &os)
   (getHeight() < (float)0) ? os << "N/A" << endl : os << getHeight() << endl;
   os << "    Weight(kg): ";
   (getWeight() < (float)0) ? os << "N/A" << endl : os << getWeight() << endl;
-  os << "    Happiness: " << getHappiness() << endl;
-  os << "    Hunger: " << getHunger() << endl;
-  os << "    Thirst: " << getThirst() << endl;
-  os << "    Fitness: " << getFitness() << endl;
-  os << "    Energy: " << getSleep() << endl;
-  os << "    Grooming: " << getGrooming() << endl;
-  os << "    Gestating: ";
+  os << "    Energy:     " << getSleep() << endl;
+  os << "    Thirst:     " << getThirst() << endl;
+  os << "    Hunger:     " << getHunger() << endl;
+  os << "    Happiness:  " << getHappiness() << endl;
+  os << "    Fitness:    " << getFitness() << endl;
+  os << "    Grooming:   " << getGrooming() << endl;
+  os << "    Gestating:  ";
   (isGestating()) ? os << "YES" << endl : os << "NO" << endl;
   return;
 }

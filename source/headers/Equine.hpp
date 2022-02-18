@@ -1,5 +1,5 @@
 /**
- * File: Horse.cpp
+ * File: Equine.cpp
  * @author Brooke Kindleman (brooke.kindleman@gmail.com)
  * Date: 27/Jan/2022
  *
@@ -8,25 +8,23 @@
 #include <cstring>
 #include <ostream>
 #include "Health.hpp"
-#include "Equipment.hpp"
 
 #define VARIANT_SIZE 4
 
 /**
- * @brief Class for Horses of all kinds, provides basic functionality for horses and inherits from Health, Equipment(not yet implemented), and Lineage(not yet implemented)
+ * @brief Class for Equines of all kinds, provides basic functionality for horses and inherits from Health, Equipment(not yet implemented), and Lineage(not yet implemented)
  *
  */
-class Horse : public Health
+
+class Equine : public Health
 {
+
 protected:
-  char *variant;
-  char *name;
+  char variant;
+  std::string name;
   int age;  // Value < 0 signifies an unknown age
   char sex; // To be uppercase only
-  int nameLength;
-  Equipment equipment;
   // NOT IMPLEMENTED YET
-  // HorseVariant variant;
   // Lineage lineage;
 
 public:
@@ -37,13 +35,13 @@ public:
    * @param horse
    * @return std::ostream&
    */
-  friend std::ostream &operator<<(std::ostream &os, Horse &horse);
+  friend std::ostream &operator<<(std::ostream &os, Equine &horse);
   /**
    * @brief Get the Name
    *
    * @return char*
    */
-  char *getName() const;
+  std::string getName() const;
   /**
    * @brief Get the Age
    *
@@ -62,7 +60,7 @@ public:
    * @param name
    * @param length
    */
-  void setName(char *name, int length);
+  void setName(std::string name);
   /**
    * @brief Set the Age
    *
@@ -76,12 +74,11 @@ public:
    */
   void setSex(char sex);
 
-  virtual void setVariant(const char *);
-  virtual void setVariant(char *);
-  virtual char *getVariant() const;
+  void setVariant(char variant);
+  char getVariant() const;
 
   /**
-   * @brief Construct a new Horse
+   * @brief Construct a new Equine
    *
    * @param name
    * @param length
@@ -89,33 +86,30 @@ public:
    * @param age
    * @param variant
    */
-  Horse(char *name, int length, char sex, int age = -1, const char *variant = "N/A");
+  Equine(std::string name, char sex = 'X', int age = -1, char variant = 'X');
   /**
-   * @brief Add Horse object information to referenced ostream
+   * @brief Add Equine object information to referenced ostream
    *
    * @param os
    */
   void horseStream(std::ostream &os);
 
   /**
-   * @brief Destroy the Horse
+   * @brief Destroy the Equine
    *
    */
-  virtual ~Horse();
+  virtual ~Equine();
   /**
-   * @brief Assignment operator overload for the Horse
+   * @brief Assignment operator overload for the Equine
    *
    * @param src
-   * @return Horse&
+   * @return Equine&
    */
-  Horse &operator=(Horse &src);
+  Equine &operator=(Equine &src);
   /**
-   * @brief Construct a new Horse
+   * @brief Construct a new Equine
    *
    * @param src
    */
-  Horse(Horse &src);
-
-  Equipment getEquipment();
-  Equipment setEquipment();
+  Equine(Equine &src);
 };

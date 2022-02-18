@@ -6,19 +6,14 @@
  */
 
 #include <iostream>
-#include "./headers/TeraHorse.hpp"
+#include "../source/headers/Equine.hpp"
 
 using namespace std;
 
 int main(void)
 {
-  Horse beefHorse("Peanuts", (int)sizeof("Peanuts") / sizeof(char), 'M', 8);
-  TeraHorse beep("Beepers", strlen("Beepers"), 'F', true, 10);
+  Equine beefHorse("Beebe");
   cout << beefHorse;
-  cout << beep;
-
-  Horse beepersBeef(beep);
-  cout << beepersBeef;
 
   return 0;
 }
