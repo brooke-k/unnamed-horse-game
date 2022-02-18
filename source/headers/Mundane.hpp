@@ -5,5 +5,9 @@
  *
  */
 
-#include "Horse.hpp"
 #include <string>
+class Mundane : protected Equine
+{
+private:
+protected:
+};

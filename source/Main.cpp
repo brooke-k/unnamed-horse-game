@@ -13,7 +13,13 @@ using namespace std;
 int main(void)
 {
   Equine beefHorse("Beebe");
-  cout << beefHorse;
+  Equine wild1('F');
+  Equine wild2('F', 4);
+  Equine beens("Beens 'n' Paste", 'G');
+  cout
+      << beefHorse;
+  cout << wild1;
+  cout << beens;
 
   return 0;
 }

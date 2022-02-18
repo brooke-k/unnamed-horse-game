@@ -10,12 +10,28 @@
 
 using namespace std;
 
-Equine::Equine(std::string name, char sex, int age, char variant)
+Equine::Equine(char sex, int age)
+{
+  name = "N/A";
+  this->variant = 'X';
+  this->sex = sex;
+  this->age = age;
+}
+
+Equine::Equine()
+{
+  name = "N/A";
+  this->variant = 'X';
+  this->sex = 'X';
+  this->age = -1;
+}
+
+Equine::Equine(std::string name, char sex, int age)
 {
   this->name = name;
   this->age = age;
   this->sex = sex;
-  setVariant(variant);
+  setVariant('X');
 }
 
 Equine::~Equine()
@@ -27,7 +43,6 @@ Equine &Equine::operator=(Equine &src)
 {
   if (this != &src)
   {
-
     this->name = src.name;
     this->variant = src.variant;
     this->age = src.age;

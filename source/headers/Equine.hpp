@@ -18,14 +18,22 @@
 
 class Equine : public Health
 {
-
-protected:
-  char variant;
   std::string name;
   int age;  // Value < 0 signifies an unknown age
   char sex; // To be uppercase only
+  char variant;
+
+protected:
   // NOT IMPLEMENTED YET
   // Lineage lineage;
+  void setVariant(char variant);
+  char getVariant() const;
+  /**
+   * @brief Add Equine object information to referenced ostream
+   *
+   * @param os
+   */
+  void horseStream(std::ostream &os);
 
 public:
   /**
@@ -74,9 +82,6 @@ public:
    */
   void setSex(char sex);
 
-  void setVariant(char variant);
-  char getVariant() const;
-
   /**
    * @brief Construct a new Equine
    *
@@ -86,13 +91,9 @@ public:
    * @param age
    * @param variant
    */
-  Equine(std::string name, char sex = 'X', int age = -1, char variant = 'X');
-  /**
-   * @brief Add Equine object information to referenced ostream
-   *
-   * @param os
-   */
-  void horseStream(std::ostream &os);
+  Equine(std::string name, char sex = 'X', int age = -1);
+  Equine();
+  Equine(char sex = 'X', int age = -1);
 
   /**
    * @brief Destroy the Equine
