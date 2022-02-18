@@ -5,6 +5,9 @@
  *
  */
 
+#ifndef EQUINE_CLASS
+#define EQUINE_CLASS
+
 #include <cstring>
 #include <ostream>
 #include "Health.hpp"
@@ -116,3 +119,5 @@ public:
    */
   Equine(Equine &src);
 };
+
+#endif
