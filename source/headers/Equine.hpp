@@ -9,6 +9,8 @@
 #include <ostream>
 #include "Health.hpp"
 
+#include "EquineEnums.hpp"
+
 #define VARIANT_SIZE 4
 
 /**
@@ -21,13 +23,13 @@ class Equine : public Health
   std::string name;
   int age;  // Value < 0 signifies an unknown age
   char sex; // To be uppercase only
-  char variant;
+  EqVariant variant;
 
 protected:
   // NOT IMPLEMENTED YET
   // Lineage lineage;
-  void setVariant(char variant);
-  char getVariant() const;
+  void setVariant(EqVariant variant);
+  EqVariant getVariant() const;
   /**
    * @brief Add Equine object information to referenced ostream
    *

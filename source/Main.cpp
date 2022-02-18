@@ -7,19 +7,13 @@
 
 #include <iostream>
 #include "../source/headers/Equine.hpp"
+#include "../source/headers/EquineEnums.hpp"
 
 using namespace std;
 
 int main(void)
 {
-  Equine beefHorse("Beebe");
-  Equine wild1('F');
-  Equine wild2('F', 4);
-  Equine beens("Beens 'n' Paste", 'G');
-  cout
-      << beefHorse;
-  cout << wild1;
-  cout << beens;
-
+  Equine ranchDressing('F', -1);
+  cout << ranchDressing;
   return 0;
 }

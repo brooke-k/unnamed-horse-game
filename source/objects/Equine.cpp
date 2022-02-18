@@ -8,12 +8,14 @@
 #include <iostream>
 #include "../headers/Equine.hpp"
 
+#include "../headers/EquineEnums.hpp"
+
 using namespace std;
 
 Equine::Equine(char sex, int age)
 {
   name = "N/A";
-  this->variant = 'X';
+  this->variant = MUNDANE;
   this->sex = sex;
   this->age = age;
 }
@@ -21,7 +23,7 @@ Equine::Equine(char sex, int age)
 Equine::Equine()
 {
   name = "N/A";
-  this->variant = 'X';
+  this->variant = MUNDANE;
   this->sex = 'X';
   this->age = -1;
 }
@@ -31,7 +33,7 @@ Equine::Equine(std::string name, char sex, int age)
   this->name = name;
   this->age = age;
   this->sex = sex;
-  setVariant('X');
+  this->variant = MUNDANE;
 }
 
 Equine::~Equine()
@@ -72,7 +74,7 @@ void Equine::horseStream(ostream &os)
   os << "/------ HORSE REPORT ------\\" << endl;
   os << "  Basic Info:" << endl;
   os << "    Name:       " << getName() << endl;
-  os << "    Variant:    " << getVariant() << endl;
+  os << "    Variant:    " << toString(getVariant()) << endl;
   os << "    Age:        " << getAge() << endl;
   os << "    Sex:        " << getSex() << endl;
   os << "  Health Info: " << endl;
@@ -110,12 +112,12 @@ void Equine::setSex(char sex)
   this->sex = sex;
 }
 
-void Equine::setVariant(char variant)
+void Equine::setVariant(EqVariant variant)
 {
   this->variant = variant;
 }
 
-char Equine::getVariant() const
+EqVariant Equine::getVariant() const
 {
   return variant;
 }
