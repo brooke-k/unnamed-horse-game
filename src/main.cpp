@@ -6,11 +6,13 @@
  */
 
 #include <iostream>
+#include "./classes/include/gene.hpp"
 
 using namespace std;
 
 int main(void)
 {
-  cout << "It works" << endl;
+  Gene testGene('A', 'B');
+  cout << testGene << endl;
   return 0;
 }
