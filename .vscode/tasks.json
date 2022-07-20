@@ -2,40 +2,50 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "type": "cppbuild",
-      "label": "C/C++: cpp build active file",
-      "command": "/usr/bin/cpp",
-      "args": [
-        "-fdiagnostics-color=always",
-        "-g",
-        "${file}",
-        "-o",
-        "${workspaceFolder}/build/${fileBasenameNoExtension}.exe"
-      ],
-      "options": {
-        "cwd": "${fileDirname}"
+      "type": "shell",
+      "label": "C/C++ runs ./build/main.exe",
+      "command": "${workspaceFolder}/build/main.exe",
+      "group": {
+        "kind": "test",
+        "isDefault": true
       },
-      "problemMatcher": ["$gcc"],
-      "group": "build",
-      "detail": "compiler: /usr/bin/cpp"
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated",
+        "showReuseMessage": false,
+        "clear": true
+      }
     },
     {
       "type": "cppbuild",
       "label": "C/C++: cpp build main file",
-      "command": "/usr/bin/cpp",
+      "command": "g++",
       "args": [
         "-fdiagnostics-color=always",
-        "-g",
+        "${workspaceFolder}/src/classes/*.cpp",
         "${workspaceFolder}/src/main.cpp",
         "-o",
-        "${workspaceFolder}/build/${fileBasenameNoExtension}.exe"
+        "${workspaceFolder}/build/main.exe"
       ],
       "options": {
         "cwd": "${fileDirname}"
       },
       "problemMatcher": ["$gcc"],
-      "group": "build",
-      "detail": "compiler: /usr/bin/g++-11"
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "detail": "compiler: /usr/bin/g++-11",
+      "presentation": {
+        "echo": true,
+        "reveal": "never",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true
+      }
     }
   ]
 }

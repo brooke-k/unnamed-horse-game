@@ -18,7 +18,16 @@ private:
 
 protected:
 public:
-  Gene(char allele1, char allele2, const char *name = "Unnamed Gene", const char *al1Alias = "Allele 1", const char *al2alias = "Allele 2")
+  Gene()
+  {
+    this->allele1 = '?';
+    this->allele2 = '?';
+    this->al1Alias = "AL_1";
+    this->al2Alias = "AL_2";
+    this->name = "Unnamed Gene";
+  }
+
+  Gene(char allele1, char allele2, const char *name = "Unnamed Gene", const char *al1Alias = "Allele 1", const char *al2Alias = "Allele 2")
   {
     this->allele1 = allele1;
     this->allele2 = allele2;
@@ -64,4 +73,14 @@ public:
   char getAllele2() const;
   string getAl1Alias() const;
   string getAl2Alias() const;
+
+  void setName(string name);
+  void setAllele1(char allele);
+  void setAllele1(char allele, string alleleName);
+  void setAllele1(string alleleName);
+  void setAllele2(char allele);
+  void setAllele2(string alleleName);
+  void setAllele2(char allele, string alleleName);
+  void setAlleles(char allele1, char allele2);
+  void setAlleles(char allele1, string alias1, char allele2, string alias2);
 };

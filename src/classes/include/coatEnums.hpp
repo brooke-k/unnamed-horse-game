@@ -7,8 +7,10 @@
 
 enum baseCoat
 {
-  agouti,
-  redFactor
+  agoutiDom = 'A',
+  agoutiRec = 'a',
+  redFactDom = 'E',
+  redFactRec = 'e'
 };
 
 enum coatPart

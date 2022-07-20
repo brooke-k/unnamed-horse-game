@@ -6,13 +6,20 @@
  */
 
 #include <iostream>
-#include "./classes/include/gene.hpp"
+
+#include "./classes/include/baseCoat.hpp"
 
 using namespace std;
 
 int main(void)
 {
-  Gene testGene('A', 'B');
-  cout << testGene << endl;
+
+  BaseCoat beans(false, true);
+
+  BaseCoat b = BaseCoat();
+  cout << b.getBaseCoatColour() << endl;
+  cout << beans.getBaseCoatColour() << endl;
+
+  cout << "END" << endl;
   return 0;
 }
