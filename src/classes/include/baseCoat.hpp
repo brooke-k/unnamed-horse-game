@@ -5,57 +5,76 @@
  *
  */
 
-#include "./gene.hpp"
 #include <string>
+
+using namespace std;
 class BaseCoat
 {
 private:
-  Gene agouti;
-  Gene redFactor;
   string colourName;
-  string calculateBaseCoat(char rf1, char rf2, char ag1, char ag2);
+  bool *alleles;
+  int geneDec;
 
 public:
-  // BaseCoat()
-  // {
-  //   redFactor = Gene('E', 'e', "Red Factor", "MC1R_1", "MC1R_2");
-  //   agouti = Gene('A', 'a', "Agouti (black points)", "ASIP_1", "ASIP_2");
-  //   colourName = this->calculateBaseCoat(redFactor.getAllele1(), redFactor.getAllele2(), agouti.getAllele1(), agouti.getAllele2());
-  // }
-
-  BaseCoat(bool allRed = false, bool allBlack = false, bool blackHetero = true, bool redHetero = true)
+  BaseCoat(bool redFact1 = true, bool redFact2 = false, bool agouti1 = true, bool agouti2 = false)
   {
-    redFactor = Gene('E', 'e', "RedFactor", "MC1R_1", "MC1R_2");
-    agouti = Gene('A', 'a', "Agouti (black points)", "ASIP_1", "ASIP_2");
-    if (allRed)
-    {
-      redFactor.setAlleles('e', 'e');
-    }
-    else
-    {
-      if (!redHetero)
-      {
-        redFactor.setAlleles('E', 'E');
-      }
-    }
-    if (allBlack)
-    {
-      agouti.setAlleles('a', 'a');
-    }
-    else
-    {
-      if (!blackHetero)
-      {
-        agouti.setAlleles('A', 'A');
-      }
-    }
-    colourName = this->calculateBaseCoat(redFactor.getAllele1(), redFactor.getAllele2(), agouti.getAllele1(), agouti.getAllele2());
+    this->alleles = new bool[4]{0};
+    this->alleles[0] = redFact1;
+    this->alleles[1] = redFact2;
+    this->alleles[2] = agouti1;
+    this->alleles[3] = agouti2;
+
+    this->geneDec = BaseCoat::inDecimal(alleles);
+    this->colourName = BaseCoat::asString(this->geneDec);
   }
 
-  static string calculateBaseCoatColour(bool redFactor1Dom, bool redFactor2Dom, bool agouti1Dom, bool agouti2Dom);
-
-  string getBaseCoatColour()
+  BaseCoat(int geneDec)
   {
-    return colourName;
+    this->geneDec = geneDec;
+    alleles = new bool[4]{0};
+    BaseCoat::asArray(alleles, geneDec);
+    this->colourName = BaseCoat::asString(geneDec);
   }
+
+  BaseCoat(const BaseCoat *src)
+  {
+    if (this == src)
+    {
+      return;
+    }
+    this->geneDec = src->geneDec;
+    this->colourName = BaseCoat::asString(this->geneDec);
+    this->alleles = new bool[4]{0};
+    BaseCoat::asArray(this->alleles, this->geneDec);
+  }
+
+  BaseCoat *operator=(const BaseCoat *src)
+  {
+    if (this == src)
+    {
+      return this;
+    }
+    this->geneDec = src->geneDec;
+    BaseCoat::asArray(this->alleles, src->geneDec);
+    this->colourName = src->colourName;
+  }
+
+  static int inDecimal(const bool *alleles);
+
+  static string asString(int geneDecimal);
+  static string asString(const bool *alleles);
+
+  static void asArray(bool *dest, int geneDecimal);
+
+  void setGeneDec(int geneDec);
+  void setAllelesArr(const bool *alleles);
+
+  string getCoatName();
+  int getGeneDec();
+  string getAllelesAlpha();
+  string getAllelesBin();
+
+  int updateAllele(int pos, bool newValue);
+
+  friend ostream &operator<<(ostream &os, BaseCoat &bc);
 };
