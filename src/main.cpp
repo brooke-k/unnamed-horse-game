@@ -6,16 +6,15 @@
  */
 
 #include <iostream>
-#include "./classes/include/coatCode.hpp"
+#include "./classes/include/coat.hpp"
 
 using namespace std;
 
 int main(void)
 {
 
-  CoatCode testCode(4);
+  Coat testCode(4);
   cout << testCode << endl;
-  cout << "END PROGRAM" << endl;
 
   return 0;
 }

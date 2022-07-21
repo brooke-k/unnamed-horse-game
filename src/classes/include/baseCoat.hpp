@@ -5,18 +5,24 @@
  *
  */
 
+#include "./coatCode.hpp"
 #include <string>
 #include <iostream>
 #include <bitset>
 #include <regex>
 
 using namespace std;
-class BaseCoat
+class BaseCoat : public CoatCode
 {
+  unsigned short baseCode;
+
 public:
-  BaseCoat()
+  BaseCoat(unsigned long int code = 0) : CoatCode(code)
   {
-    return;
+    bitset<32> tempSet(63);
+    bitset<32> codeSet(code);
+
+    baseCode = (unsigned short)(tempSet & codeSet).to_ulong();
   }
 
   BaseCoat(BaseCoat &src)
@@ -28,14 +34,22 @@ public:
   {
     return *this;
   }
-  ~BaseCoat() { return; }
+  virtual ~BaseCoat() { return; }
 
   // Converters
-  string getBaseAsString(bitset<32> bset);
+  string getBaseString();
+  string getBaseName();
 
-  string getBaseAsString(unsigned long int code);
+  string getBaseName(unsigned short code);
+  string getBaseName(unsigned long int code);
 
-  unsigned long int getBaseAsULong(string coatName);
+  unsigned short getBase();
 
-  bitset<32> getBaseAsBitset(string coatName);
+  bitset<8> getBaseBitset8();
+
+  string allBaseCoatStr();
+  string baseCoatCodesByName(string coatName);
+  virtual string toString();
+
+  friend ostream &operator<<(ostream &os, BaseCoat &bc);
 };
