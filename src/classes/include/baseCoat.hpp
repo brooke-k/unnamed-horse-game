@@ -24,16 +24,16 @@ public:
     this->alleles[2] = agouti1;
     this->alleles[3] = agouti2;
 
-    this->geneDec = BaseCoat::inDecimal(alleles);
-    this->colourName = BaseCoat::asString(this->geneDec);
+    this->geneDec = geneDecimal(alleles);
+    this->colourName = coatName(this->geneDec);
   }
 
   BaseCoat(int geneDec)
   {
     this->geneDec = geneDec;
     alleles = new bool[4]{0};
-    BaseCoat::asArray(alleles, geneDec);
-    this->colourName = BaseCoat::asString(geneDec);
+    geneDecToArray(alleles, geneDec);
+    this->colourName = coatName(geneDec);
   }
 
   BaseCoat(const BaseCoat *src)
@@ -42,10 +42,20 @@ public:
     {
       return;
     }
+    if (alleles != nullptr)
+    {
+      delete alleles;
+    }
     this->geneDec = src->geneDec;
-    this->colourName = BaseCoat::asString(this->geneDec);
+    this->colourName = coatName(this->geneDec);
     this->alleles = new bool[4]{0};
-    BaseCoat::asArray(this->alleles, this->geneDec);
+    geneDecToArray(this->alleles, this->geneDec);
+  }
+
+  ~BaseCoat()
+  {
+    delete alleles;
+    return;
   }
 
   BaseCoat *operator=(const BaseCoat *src)
@@ -54,25 +64,30 @@ public:
     {
       return this;
     }
+    if (this->alleles != nullptr)
+    {
+      delete this->alleles;
+    }
+    alleles = new bool[4];
     this->geneDec = src->geneDec;
-    BaseCoat::asArray(this->alleles, src->geneDec);
+    geneDecToArray(this->alleles, src->geneDec);
     this->colourName = src->colourName;
   }
 
-  static int inDecimal(const bool *alleles);
+  int geneDecimal(const bool *alleles);
 
-  static string asString(int geneDecimal);
-  static string asString(const bool *alleles);
+  string coatName(int geneDecimal);
+  string coatName(const bool *alleles);
 
-  static void asArray(bool *dest, int geneDecimal);
+  void geneDecToArray(bool *dest, int geneDecimal);
 
   void setGeneDec(int geneDec);
-  void setAllelesArr(const bool *alleles);
+  void setbcAllelesArr(const bool *alleles);
 
   string getCoatName();
   int getGeneDec();
-  string getAllelesAlpha();
-  string getAllelesBin();
+  string getbcAllelesAlpha();
+  string getbcAllelesBin();
 
   int updateAllele(int pos, bool newValue);
 

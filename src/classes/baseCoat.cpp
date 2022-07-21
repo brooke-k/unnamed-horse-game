@@ -11,7 +11,7 @@
 #include <cmath>
 using namespace std;
 
-int BaseCoat::inDecimal(const bool *alleles)
+int BaseCoat::geneDecimal(const bool *alleles)
 {
   if (alleles + 3 == nullptr)
   {
@@ -26,20 +26,20 @@ int BaseCoat::inDecimal(const bool *alleles)
   return geneDec;
 }
 
-string BaseCoat::asString(int geneDecimal)
+string BaseCoat::coatName(int bcGeneDec)
 {
   string geneStr = "Invalid base coat. Code: ";
-  if (geneDecimal > 15)
+  if (bcGeneDec > 15)
   {
-    geneStr.append(to_string(geneDecimal));
+    geneStr.append(to_string(bcGeneDec));
     return geneStr;
   }
 
-  if (geneDecimal < 4) // Codes 0-3 are Red
+  if (bcGeneDec < 4) // Codes 0-3 are Red
   {
     return "Red";
   }
-  if (geneDecimal % 4 == 0) // Codes 4, 8, and 12 are Black
+  if (bcGeneDec % 4 == 0) // Codes 4, 8, and 12 are Black
   {
     return "Black";
   }
@@ -47,20 +47,20 @@ string BaseCoat::asString(int geneDecimal)
   return "Bay"; // All other codes are Bay
 }
 
-string BaseCoat::asString(const bool *alleles)
+string BaseCoat::coatName(const bool *alleles)
 {
-  int geneDecimal = BaseCoat::inDecimal(alleles);
-  return BaseCoat::asString(geneDecimal);
+  int bcGeneDec = geneDecimal(alleles);
+  return coatName(bcGeneDec);
 }
 
-void BaseCoat::asArray(bool *dest, int geneDecimal)
+void BaseCoat::geneDecToArray(bool *dest, int bcGeneDec)
 {
   if (dest != nullptr)
   {
     delete dest;
   }
   dest = new bool[4]{0};
-  int lastRemain = geneDecimal;
+  int lastRemain = bcGeneDec;
   int lastQuot = 0;
 
   for (int i = 3; i > -1; i--)
@@ -82,13 +82,13 @@ void BaseCoat::setGeneDec(int geneDec)
   this->geneDec = geneDec;
   delete alleles;
   alleles = new bool[4]{0};
-  BaseCoat::asArray(alleles, geneDec);
-  colourName = BaseCoat::asString(alleles);
+  geneDecToArray(alleles, geneDec);
+  colourName = coatName(alleles);
 }
 
-void BaseCoat::setAllelesArr(const bool *alleles)
+void BaseCoat::setbcAllelesArr(const bool *alleles)
 {
-  int tempDec = BaseCoat::inDecimal(alleles);
+  int tempDec = geneDecimal(alleles);
   if (tempDec < 0)
   {
     cout << "Invalid alleles array provided as a base coat" << endl;
@@ -102,7 +102,7 @@ void BaseCoat::setAllelesArr(const bool *alleles)
   {
     this->alleles[i] = alleles[i];
   }
-  this->colourName = BaseCoat::asString(geneDec);
+  this->colourName = coatName(geneDec);
 }
 
 string BaseCoat::getCoatName()
@@ -115,7 +115,7 @@ int BaseCoat::getGeneDec()
   return geneDec;
 }
 
-string BaseCoat::getAllelesAlpha()
+string BaseCoat::getbcAllelesAlpha()
 {
   string asAlpha = "";
   asAlpha.append(string(1, alleles[0] ? 'E' : 'e'));
@@ -125,7 +125,7 @@ string BaseCoat::getAllelesAlpha()
   return asAlpha;
 }
 
-string BaseCoat::getAllelesBin()
+string BaseCoat::getbcAllelesBin()
 {
   string asBin = "";
   for (int i = 0; i < 4; i++)
@@ -144,8 +144,8 @@ int BaseCoat::updateAllele(int pos, bool newValue)
     return -1;
   }
   alleles[pos] = newValue;
-  this->geneDec = BaseCoat::inDecimal(this->alleles);
-  this->colourName = BaseCoat::asString(this->alleles);
+  this->geneDec = geneDecimal(this->alleles);
+  this->colourName = coatName(this->alleles);
   return geneDec;
 }
 
@@ -157,7 +157,7 @@ ostream &operator<<(ostream &os, BaseCoat &bc)
   os << endl;
   os << "  Dec.GeneCode: " << bc.getGeneDec();
   os << endl;
-  os << "  Binary GeneCode: " << bc.getAllelesBin() << "(" << bc.getAllelesAlpha() << ")";
+  os << "  Binary GeneCode: " << bc.getbcAllelesBin() << "(" << bc.getbcAllelesAlpha() << ")";
   os << endl;
   return os;
 }
