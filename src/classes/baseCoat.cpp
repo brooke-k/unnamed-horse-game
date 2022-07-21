@@ -1,163 +1,65 @@
-/**
- * @file baseCoat.cpp
- * @author Brooke Kindleman (brooke.kindleman@gmail.com) @brooke-k
- * @date 19/Jul/2022
- *
- */
-
 #include "./include/baseCoat.hpp"
-#include <string>
 #include <iostream>
-#include <cmath>
+#include <bitset>
+#include <string>
 using namespace std;
 
-int BaseCoat::geneDecimal(const bool *alleles)
+string BaseCoat::getBaseAsString(bitset<32> bset)
 {
-  if (alleles + 3 == nullptr)
+  if (bset[0] || bset[1])
   {
-    return -1;
+    return "White";
   }
-  int geneDec = 0;
-
-  for (int i = 3, f = 0; i > -1; i--, f++)
-  {
-    geneDec += ((int)*(alleles + f)) * (int)floor(pow(2, i));
-  }
-  return geneDec;
-}
-
-string BaseCoat::coatName(int bcGeneDec)
-{
-  string geneStr = "Invalid base coat. Code: ";
-  if (bcGeneDec > 15)
-  {
-    geneStr.append(to_string(bcGeneDec));
-    return geneStr;
-  }
-
-  if (bcGeneDec < 4) // Codes 0-3 are Red
+  else if (!(bset[2] || bset[3]))
   {
     return "Red";
   }
-  if (bcGeneDec % 4 == 0) // Codes 4, 8, and 12 are Black
+  else if (bset[4] || bset[5])
+  {
+    return "Bay";
+  }
+  else
   {
     return "Black";
   }
-
-  return "Bay"; // All other codes are Bay
 }
 
-string BaseCoat::coatName(const bool *alleles)
+string BaseCoat::getBaseAsString(unsigned long int code)
 {
-  int bcGeneDec = geneDecimal(alleles);
-  return coatName(bcGeneDec);
+  return getBaseAsString(bitset<32>(code));
 }
 
-void BaseCoat::geneDecToArray(bool *dest, int bcGeneDec)
+// Will return the minimum possible dominance for the coat colour. Digits not coding for the base coat will be set to false.
+// Non-expressed alleles will be set as heterogynous
+unsigned long int BaseCoat::getBaseAsULong(string coatName)
 {
-  if (dest != nullptr)
+  regex nameMatch("^bay$", regex_constants::icase);
+  smatch mtch;
+  regex_search(coatName, mtch, nameMatch);
+  if (!mtch.empty())
   {
-    delete dest;
+    return 20; // Minimum code for a bay coat (NNEeAa)
   }
-  dest = new bool[4]{0};
-  int lastRemain = bcGeneDec;
-  int lastQuot = 0;
-
-  for (int i = 3; i > -1; i--)
+  nameMatch = regex("^white$", regex_constants::icase);
+  regex_search(coatName, mtch, nameMatch);
+  if (!mtch.empty())
   {
-    lastQuot = lastRemain % 2;
-    lastRemain /= 2;
-    dest[i] = (bool)lastQuot;
+    return 21; // Minimum code for a white coat (CWNEeAa)
   }
-}
-
-void BaseCoat::setGeneDec(int geneDec)
-{
-  if (geneDec < 0 || geneDec > 15)
+  nameMatch = regex("^red$", regex_constants::icase);
+  if (!mtch.empty())
   {
-    cout << "Invalid base coat decimal gene code: " << geneDec << endl;
-    cout << "The base coat decimal gene code was not updated." << endl;
-    return;
+    return 16; // Minimum code for a red coat (NNeeAa)
   }
-  this->geneDec = geneDec;
-  delete alleles;
-  alleles = new bool[4]{0};
-  geneDecToArray(alleles, geneDec);
-  colourName = coatName(alleles);
-}
-
-void BaseCoat::setbcAllelesArr(const bool *alleles)
-{
-  int tempDec = geneDecimal(alleles);
-  if (tempDec < 0)
+  nameMatch = regex("^black$", regex_constants::icase);
+  if (!mtch.empty())
   {
-    cout << "Invalid alleles array provided as a base coat" << endl;
-    cout << "The base coat alleles array was not updated." << endl;
-    return;
+    return 4; // Minimum code for a black coat (NNEeaa)
   }
-  this->geneDec = tempDec;
-  delete this->alleles;
-  this->alleles = new bool[4]{0};
-  for (int i = 0; i < 4; i++)
-  {
-    this->alleles[i] = alleles[i];
-  }
-  this->colourName = coatName(geneDec);
+  return 20; // Minimum code for a bay coat (NNEeAa), if no match made.
 }
 
-string BaseCoat::getCoatName()
+bitset<32> BaseCoat::getBaseAsBitset(string coatName)
 {
-  return colourName;
-}
-
-int BaseCoat::getGeneDec()
-{
-  return geneDec;
-}
-
-string BaseCoat::getbcAllelesAlpha()
-{
-  string asAlpha = "";
-  asAlpha.append(string(1, alleles[0] ? 'E' : 'e'));
-  asAlpha.append(string(1, alleles[1] ? 'E' : 'e'));
-  asAlpha.append(string(1, alleles[2] ? 'A' : 'a'));
-  asAlpha.append(string(1, alleles[3] ? 'A' : 'a'));
-  return asAlpha;
-}
-
-string BaseCoat::getbcAllelesBin()
-{
-  string asBin = "";
-  for (int i = 0; i < 4; i++)
-  {
-    asBin.append(to_string((int)alleles[i]));
-  }
-  return asBin;
-}
-
-int BaseCoat::updateAllele(int pos, bool newValue)
-{
-  if (pos > 4 || pos < 0)
-  {
-    cout << "Invalid position \"" << pos << "\" provided." << endl;
-    cout << "The base coat allele was not updated." << endl;
-    return -1;
-  }
-  alleles[pos] = newValue;
-  this->geneDec = geneDecimal(this->alleles);
-  this->colourName = coatName(this->alleles);
-  return geneDec;
-}
-
-ostream &operator<<(ostream &os, BaseCoat &bc)
-{
-  os << "BASE COAT";
-  os << endl;
-  os << "  Coat name: " << bc.getCoatName();
-  os << endl;
-  os << "  Dec.GeneCode: " << bc.getGeneDec();
-  os << endl;
-  os << "  Binary GeneCode: " << bc.getbcAllelesBin() << "(" << bc.getbcAllelesAlpha() << ")";
-  os << endl;
-  return os;
+  return bitset<32>(getBaseAsULong(coatName));
 }

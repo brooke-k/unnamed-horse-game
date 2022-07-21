@@ -1,95 +1,41 @@
 /**
  * @file baseCoat.hpp
  * @author Brooke Kindleman (brooke.kindleman@gmail.com) @brooke-k
- * @date 19/Jul/2022
+ * @date 21/Jul/2022
  *
  */
 
 #include <string>
+#include <iostream>
+#include <bitset>
+#include <regex>
 
 using namespace std;
 class BaseCoat
 {
-private:
-  string colourName;
-  bool *alleles;
-  int geneDec;
-
 public:
-  BaseCoat(bool redFact1 = true, bool redFact2 = false, bool agouti1 = true, bool agouti2 = false)
+  BaseCoat()
   {
-    this->alleles = new bool[4]{0};
-    this->alleles[0] = redFact1;
-    this->alleles[1] = redFact2;
-    this->alleles[2] = agouti1;
-    this->alleles[3] = agouti2;
-
-    this->geneDec = geneDecimal(alleles);
-    this->colourName = coatName(this->geneDec);
-  }
-
-  BaseCoat(int geneDec)
-  {
-    this->geneDec = geneDec;
-    alleles = new bool[4]{0};
-    geneDecToArray(alleles, geneDec);
-    this->colourName = coatName(geneDec);
-  }
-
-  BaseCoat(const BaseCoat *src)
-  {
-    if (this == src)
-    {
-      return;
-    }
-    if (alleles != nullptr)
-    {
-      delete alleles;
-    }
-    this->geneDec = src->geneDec;
-    this->colourName = coatName(this->geneDec);
-    this->alleles = new bool[4]{0};
-    geneDecToArray(this->alleles, this->geneDec);
-  }
-
-  ~BaseCoat()
-  {
-    delete alleles;
     return;
   }
 
-  BaseCoat *operator=(const BaseCoat *src)
+  BaseCoat(BaseCoat &src)
   {
-    if (this == src)
-    {
-      return this;
-    }
-    if (this->alleles != nullptr)
-    {
-      delete this->alleles;
-    }
-    alleles = new bool[4];
-    this->geneDec = src->geneDec;
-    geneDecToArray(this->alleles, src->geneDec);
-    this->colourName = src->colourName;
+    return;
   }
 
-  int geneDecimal(const bool *alleles);
+  BaseCoat &operator=(const BaseCoat *src)
+  {
+    return *this;
+  }
+  ~BaseCoat() { return; }
 
-  string coatName(int geneDecimal);
-  string coatName(const bool *alleles);
+  // Converters
+  string getBaseAsString(bitset<32> bset);
 
-  void geneDecToArray(bool *dest, int geneDecimal);
+  string getBaseAsString(unsigned long int code);
 
-  void setGeneDec(int geneDec);
-  void setbcAllelesArr(const bool *alleles);
+  unsigned long int getBaseAsULong(string coatName);
 
-  string getCoatName();
-  int getGeneDec();
-  string getbcAllelesAlpha();
-  string getbcAllelesBin();
-
-  int updateAllele(int pos, bool newValue);
-
-  friend ostream &operator<<(ostream &os, BaseCoat &bc);
+  bitset<32> getBaseAsBitset(string coatName);
 };

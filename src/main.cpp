@@ -6,25 +6,15 @@
  */
 
 #include <iostream>
-
-#include "./classes/include/baseCoat.hpp"
+#include "./classes/include/coatCode.hpp"
 
 using namespace std;
 
 int main(void)
 {
 
-  BaseCoat testCoat;
-  BaseCoat testCoat2(false, true, false);
-  BaseCoat t3(2);
-  // BaseCoat t4 = t3;
-  cout << testCoat << endl;
-  cout << testCoat2 << endl;
-  cout << t3 << endl;
-  // cout << t4 << endl;
-  testCoat2 = testCoat;
-  cout << testCoat2 << endl;
-
+  CoatCode testCode(4);
+  cout << testCode << endl;
   cout << "END PROGRAM" << endl;
 
   return 0;
