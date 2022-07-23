@@ -13,8 +13,10 @@ using namespace std;
 int main(void)
 {
 
-  Coat testCode(4);
+  Coat testCode(94897733);
   cout << testCode << endl;
+
+  cout << "END" << endl;
 
   return 0;
 }

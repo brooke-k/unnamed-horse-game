@@ -14,17 +14,28 @@ using namespace std;
 class CoatCode
 {
 private:
-protected:
+  string coatName;
+
+  bitset<32> codeSet;
+
   unsigned long int code; // 32-bit genetic coat code
 public:
   // Constructors and Destructors
-  CoatCode(unsigned long int code = 0)
+  CoatCode(unsigned long int code = (unsigned long int)0)
   {
+    cout << "CoatCode constructor called" << endl;
     this->code = code;
+    this->codeSet = bitset<32>(code);
+    this->coatName = "Not calculated";
   }
   CoatCode(CoatCode &src)
   {
-    this->code = src.code;
+    if (&src != this)
+    {
+      this->code = src.code;
+      this->codeSet = bitset<32>(src.code);
+      this->coatName = src.coatName;
+    }
   }
 
   CoatCode &operator=(const CoatCode *src)
@@ -34,19 +45,23 @@ public:
       return *this;
     }
     this->code = src->code;
+    this->codeSet = bitset<32>(src->code);
+    this->coatName = src->coatName;
     return *this;
   }
 
   unsigned long int getCodeAsULong() const;
   string getCodeAsString() const;
   bitset<32> getCodeAsBitSet32() const;
+  string getCoatName() const;
+  void setCoatName(string coatName);
 
   ~CoatCode()
   {
     return;
   }
 
-  virtual string toString();
+  string codeToString();
 
   // Friends
   friend ostream &

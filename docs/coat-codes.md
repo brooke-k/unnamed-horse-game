@@ -8,8 +8,8 @@ Horse coats are coded for using a 32-bit long int. Each bit represents the domin
 
 Each gene is encoded in a 2-bit sequence (representing 2 alleles), where 0 is a recessive allele and 1 is a dominant allele. Bit-position assignemnts are outlined below.
 
-| Bit Range | Gene                | Alleles (Dom/Rec) | Group            |
-|-----------|---------------------|-------------------|------------------|
+| Bit Range   | Gene                | Alleles (Dom/Rec) | Group            |
+|-------------|---------------------|-------------------|------------------|
 | `0-1  `     | Camarillo White     | CW/N              | Base             |
 | `2-3  `     | Red Factor          | E/e               | Base             |
 | `4-5  `     | Agouti              | A/a               | Base             |
@@ -38,5 +38,23 @@ Simplified encoding for base coats (using bits 0-5) is outlined below.
 |---------------------|---------------------|
 | `1xxxxx, 01xxxx`      | White |
 | `0000xx` | Red |
-| `001x10, 00x110` | Bay |
-| `001x11, 00x111` | Black |
+| `001x10, 00x110, 00x111, 001x11` | Bay |
+| `001x00, 00x100` | Black |
+
+## Dilutions
+
+Not all dilutions affect all coats, and not all dilutions affect coat colours with equal intensity. Most coats have a continues heterogyny that provides them the ability to produce a variety of coats.
+
+Expression of different dilutions on different base coats is shown below.
+
+| Base Coat | Dilution  | Experession | Coat Colour     |
+|-----------|-----------|-------------|-----------------|
+| Red       | Cream     | N/N         | Red (no effect) |
+| Red       | Cream     | Cr/N        | Palomino        |
+| Red       | Cream     | Cr/Cr       | Gold            |
+| Red       | Champagne | N/N         | Red (no effect) |
+| Red       | Champagne | Ch/N        | Gold            |
+| Red       | Champagne | Ch/Ch       | Classic         |
+| Red       | Pearl     | N/N         | Red (no effect) |
+| Red       | Pearl     | Prl/N       | Red (no effect) |
+| Red       | Pearl     | Prl/Prl     | Perlino         |

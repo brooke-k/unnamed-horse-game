@@ -16,7 +16,7 @@ using namespace std;
 ostream &operator<<(ostream &os, CoatCode &cc)
 {
 
-  os << cc.toString() << endl;
+  os << cc.codeToString() << endl;
   return os;
 }
 
@@ -36,11 +36,23 @@ string CoatCode::getCodeAsString() const
   return to_string(code);
 }
 
-string CoatCode::toString()
+string CoatCode::getCoatName() const
+{
+  return coatName;
+}
+
+void CoatCode::setCoatName(string coatName)
+{
+  this->coatName = coatName;
+}
+
+string CoatCode::codeToString()
 {
   string infoString = "\n\r|-- COAT CODE DATA --|";
   infoString.append("\n\r  Full Decimal Code: ");
   infoString.append(to_string(code));
+  infoString.append("\n\r  Full Binary Code: ");
+  infoString.append(getCodeAsBitSet32().to_string());
   return infoString;
 }
 

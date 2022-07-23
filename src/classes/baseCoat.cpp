@@ -6,16 +6,16 @@ using namespace std;
 
 string BaseCoat::getBaseName()
 {
-  bitset<8> bset(baseCode);
-  if (bset[0] || bset[1])
+
+  if (baseSet[0] || baseSet[1])
   {
     return "White";
   }
-  else if (!(bset[2] || bset[3]))
+  else if (!(baseSet[2] || baseSet[3]))
   {
     return "Red";
   }
-  else if (bset[4] || bset[5])
+  else if (baseSet[4] || baseSet[5])
   {
     return "Bay";
   }
@@ -27,19 +27,19 @@ string BaseCoat::getBaseName()
 
 // Will return the minimum possible dominance for the coat colour. Digits not coding for the base coat will be set to false.
 // Non-expressed alleles will be set as heterogynous
-unsigned short BaseCoat::getBase()
+unsigned long int BaseCoat::getBase() const
 {
   return baseCode;
 }
 
-bitset<8> BaseCoat::getBaseBitset8()
+bitset<6> BaseCoat::getBaseBitset6()
 {
-  return bitset<8>(baseCode);
+  return baseSet;
 }
 
 string BaseCoat::getBaseName(unsigned short code)
 {
-  bitset<8> bset(code);
+  bitset<32> bset(code);
   if (bset[0] || bset[1])
   {
     return "White";
@@ -117,10 +117,12 @@ string BaseCoat::baseCoatCodesByName(string coatName)
   return listStr;
 }
 
-string BaseCoat::toString()
+string BaseCoat::baseToString()
 {
-  string infoString = ((CoatCode) * this).toString();
+  string infoString = codeToString();
   infoString.append("\n\r  Base coat code: ");
+  infoString.append(baseSet.to_string());
+  infoString.append(", ");
   infoString.append(to_string(getBase()));
   infoString.append(("\n\r  Base coat name: "));
   infoString.append(getBaseName());
@@ -129,6 +131,6 @@ string BaseCoat::toString()
 
 ostream &operator<<(ostream &os, BaseCoat &bc)
 {
-  os << bc.toString() << endl;
+  os << bc.baseToString() << endl;
   return os;
 }

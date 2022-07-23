@@ -10,19 +10,31 @@
 #include <iostream>
 #include <bitset>
 #include <regex>
+#include <cmath>
 
 using namespace std;
+
 class BaseCoat : public CoatCode
 {
-  unsigned short baseCode;
+  bitset<6> baseSet;
+  unsigned long int baseCode;
 
 public:
-  BaseCoat(unsigned long int code = 0) : CoatCode(code)
+  BaseCoat(unsigned long int code = (unsigned long int)0) : CoatCode(code)
   {
-    bitset<32> tempSet(63);
-    bitset<32> codeSet(code);
+    cout << "Base construct called." << endl;
+    this->baseCode = 0;
+    this->baseSet = bitset<6>(0);
+    bitset<8> tempSet(0);
+    bitset<32> bset = getCodeAsBitSet32();
+    for (int i = 0; i < 6; i++)
+    {
+      this->baseSet[i] = bset[i];
+      tempSet[i] = bset[i];
+    }
 
-    baseCode = (unsigned short)(tempSet & codeSet).to_ulong();
+    this->baseCode = tempSet.to_ulong();
+    cout << "BaseCode " << this->baseCode << endl;
   }
 
   BaseCoat(BaseCoat &src)
@@ -36,6 +48,9 @@ public:
   }
   virtual ~BaseCoat() { return; }
 
+  void setBaseValues(unsigned long int code)
+  {
+  }
   // Converters
   string getBaseString();
   string getBaseName();
@@ -43,13 +58,13 @@ public:
   string getBaseName(unsigned short code);
   string getBaseName(unsigned long int code);
 
-  unsigned short getBase();
+  unsigned long int getBase() const;
 
-  bitset<8> getBaseBitset8();
+  bitset<6> getBaseBitset6();
 
   string allBaseCoatStr();
   string baseCoatCodesByName(string coatName);
-  virtual string toString();
+  string baseToString();
 
   friend ostream &operator<<(ostream &os, BaseCoat &bc);
 };
