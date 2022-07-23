@@ -10,23 +10,22 @@ Each gene is encoded in a 2-bit sequence (representing 2 alleles), where 0 is a 
 
 | Bit Range   | Gene                | Alleles (Dom/Rec)  | Group            |
 |-------------|---------------------|--------------------|------------------|
-| `0-1  `     | Camarillo White     | CW/N               | Base             |
-| `2-3  `     | Red Factor          | E/e                | Base             |
-| `4-5  `     | Agouti              | A/a                | Base             |
-| `6-7  `     | Cream               | Cr/N               | Dilution         |
-| `8-9  `     | Champagne           | Ch/N               | Dilution         |
-| `10-11`     | Pearl               | Prl/N              | Dilution         |
-| `12-13`     | Silver              | Z/N                | Dilution         |
-| `14-15`     | Dun allele 1        | D/nd1/nd2          | Dilution/Pattern |
-| `16-17`     | Dun2                | D/nd1/nd2          | Dilution/Pattern |
-| `18-19`     | Grey                | G/N                | Fade             |
-| `20-21`     | Roan                | Rn/N               | Fade             |
-| `22-23`     | Leopard Complex     | LP/N               | Marking          |
-| `24-24`     | Appaloosa Pattern-1 | PATN1/N            | Marking          |
-| `25-26`     | Lethal White Overo  | O/N                | Marking          |
-| `27-28`     | Sabino1             | SB1/N              | Marking          |
-| `29-30`     | Splashed White      | SW/N               | Marking          |
-| `31-32`     | Tobiano             | TO/N               | Marking          |
+| `31-30`     | Camarillo White     | CW/N               | Base             |
+| `29-28`     | Red Factor          | E/e                | Base             |
+| `27-26`     | Agouti              | A/a                | Base             |
+| `25-24`     | Cream               | Cr/N               | Dilution         |
+| `23-22`     | Champagne           | Ch/N               | Dilution         |
+| `21-20`     | Pearl               | Prl/N              | Dilution         |
+| `19-18`     | Silver              | Z/N                | Dilution         |
+| `17-16`     | Dun allele 1        | D/nd1/nd2          | Dilution/Pattern |
+| `15-14`     | Dun2                | D/nd1/nd2          | Dilution/Pattern |
+| `13-12`     | Grey                | G/N                | Fade             |
+| `11-10`     | Roan                | Rn/N               | Fade             |
+| `9-8  `     | Leopard Complex     | LP/N               | Marking          |
+| `7-6  `     | Appaloosa Pattern-1 | PATN1/N            | Marking          |
+| `5-4  `     | Lethal White Overo  | O/N                | Marking          |
+| `3-2  `     | Sabino1             | SB1/N              | Marking          |
+| `1-0  `     | Tobiano             | TO/N               | Marking          |
 
 
 ## Base Coats
@@ -52,7 +51,7 @@ The expression of all dilutions, except dun, on different base coats is show bel
 |-----------|-----------|----------------|----------------------------------|
 | Red       | Cream     | N/N            | Red (no effect)                  |
 | Red       | Cream     | Cr/N           | Palomino                         |
-| Red       | Cream     | Cr/Cr          | Gold                             |
+| Red       | Cream     | Cr/Cr          | Cremello                         |
 | Red       | Cream     | Cr/N and Prl/N | Pseudo Cremello                  |
 | Red       | Champagne | N/N            | Red (no effect)                  |
 | Red       | Champagne | Ch/N           | Gold                             |
@@ -114,6 +113,15 @@ A comparison of real equine genes and the equivalent 4-bit pattern used by //unn
 | nd1/nd2                        | `0100`                        | 4              | No dilution, primative markings    |
 | nd2/nd2                        | `0000`                        | 0              | No dilution, no primative markings |
 
-**Dun dilution affects both red and black hair follicles, so all base coats (except white) are affected. This dilution behaves most similarly to cream dilution with Cr/Cr dominance*
+**Dun dilution affects both red and black hair follicles, so all base coats (except white) are affected. This dilution behaves most similarly to cream dilution with Cr/Cr dominance.*
 
 Because the official names for coats affected by dun dilution (both with and without primative markings) vary from breed to breed, //unnamed-horse-game// will refer to this dilution as the base coat name, followed by 'dun', and whether or not primative markings are present.
+
+| Dilutions Heirarchy (Most Dominant to Most Recessive) |
+|----------------|
+| Silver (Black/bay coats)        |
+| Champagne, Dun |
+| Cream          |
+| Pearl          |
+
+**This dominance heirachy is not fully realistic, and has been adapted subjectively to better fit a digital format.*
