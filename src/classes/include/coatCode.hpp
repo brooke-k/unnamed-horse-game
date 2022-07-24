@@ -65,6 +65,7 @@ public:
   }
 
   string codeToString();
+  string getSectionedBin();
 
   // Friends
   friend ostream &

@@ -53,7 +53,23 @@ string CoatCode::codeToString()
   infoString.append(to_string(code));
   infoString.append("\n\r  Full Binary Code: ");
   infoString.append(getCodeAsBitSet32().to_string());
+  infoString.append("\n\r  Sectioned bin: ");
+  infoString.append((getSectionedBin()));
   return infoString;
+}
+
+string CoatCode::getSectionedBin()
+{
+  string sectionedBin = "";
+  for (int i = 31; i >= 0; i--)
+  {
+    sectionedBin.append(to_string(codeSet[i]));
+    if (i == 26 || i == 14 || i == 10) // i is at the last value of a code section
+    {
+      sectionedBin.append("-");
+    }
+  }
+  return sectionedBin;
 }
 
 // Calculators
