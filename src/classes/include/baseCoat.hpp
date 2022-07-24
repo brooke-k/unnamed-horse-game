@@ -54,6 +54,7 @@ public:
   // Converters
   string getBaseString();
   string getBaseName();
+  string getBaseAlleles();
 
   string getBaseName(unsigned long int code);
 

@@ -102,10 +102,30 @@ string BaseCoat::baseToString()
   infoString.append("\n\r  Base coat code: ");
   infoString.append(baseSet.to_string());
   infoString.append(", ");
-  infoString.append(to_string(getBase()));
+  infoString.append(getBaseAlleles());
   infoString.append(("\n\r  Base coat name: "));
   infoString.append(getBaseName());
   return infoString;
+}
+
+string BaseCoat::getBaseAlleles()
+{
+
+  string tempAlleles[] = {"cr", "cr", "e", "e", "a", "a"};
+  bitset<6> bset = getBaseBitset6();
+  string temp = "";
+  string alleleString = "";
+  for (int i = 0; i < 6; i++)
+  {
+    if (bset[5 - i])
+    {
+      temp = tempAlleles[i];
+      temp.at(0) = toupper(temp.at(0));
+      tempAlleles[i] = temp;
+    }
+    alleleString.append(tempAlleles[i]);
+  }
+  return alleleString;
 }
 
 ostream &operator<<(ostream &os, BaseCoat &bc)
