@@ -89,22 +89,22 @@ The expression of all dilutions, except dun, on different base coats is show bel
 | Black     | Silver    | Z/N            | Chocolate coat, silver mane/tail |
 | Black     | Silver    | Z/Z            | Chocolate coat, silver mane/tail |
 
-Because the expression of dun relies on the continuous dominance of 3 alleles - D, nd1, and nd2 - they are encoded within 4 bits (`14-17`), instead of two. Bits `14-15` encode for the first dun allele, and represent the presence of D, nd1, or nd2. Bits `16-17` encode for the second dun allele, and also represent the presence of D, nd1, or nd2.
+Because the expression of dun relies on the continuous dominance of 3 alleles - D, nd1, and nd2 - they are encoded within 4 bits (`17-14`), instead of two. Bits `17-16` encode for the first dun allele, and represent the presence of D, nd1, or nd2. Bits `15-14` encode for the second dun allele, and also represent the presence of D, nd1, or nd2.
 
 The specifications of these encodings is listed below.
 
 | Bit number | Allele represented |
 |------------|--------------------|
-| `14`       | D/`bit 15`         |
-| `15`       | nd1/nd2            |
-| `16`       | D/`bit 16`         |
-| `17`       | nd1/nd2            |
+| `17`       | D/`bit 16`         |
+| `16`       | nd1/nd2            |
+| `15`       | D/`bit 14`         |
+| `14`       | nd1/nd2            |
 
 The dominance of dun alleles is continous, instead of following the binary pattern all other, so expression is based on a heriarchy of dominance. For dun alleles, that heirarchy follows D>nd1>nd2.
 
 A comparison of real equine genes and the equivalent 4-bit pattern used by //unnamed-horse-game// can be found below.
 
-| Real Equine Genes  (D/nd1/nd2) | 4-Bit Rep. (bits `14-17`)     | Decimal value  | Dilution expression*               |
+| Real Equine Genes  (D/nd1/nd2) | 4-Bit Rep. (bits `17-14`)     | Decimal value  | Dilution expression*               |
 |--------------------------------|-------------------------------|----------------|------------------------------------|
 | D/D                            | `1x1x`                        | 10, 11, 14, 15 | Dilution, primative markings       |
 | D/nd1                          | `1x01`, `011x`                | 6, 7, 9, 13    | Dilution, primative markings       |
