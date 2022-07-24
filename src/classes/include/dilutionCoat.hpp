@@ -13,9 +13,7 @@
 class Dilution : public BaseCoat
 {
 private:
-  unsigned long int diluteCode;
-  bitset<12> diluteSet;
-  string diluteName;
+  string dilutionCoatName;
 
   string calculateRedDilutions(bitset<12> bset);
   string calculateBlackDilutions(bitset<12> bset);
@@ -25,22 +23,21 @@ private:
 public:
   Dilution(unsigned long int code = (unsigned long int)0) : BaseCoat(code)
   {
-    cout << "dilute constructor called" << endl;
-    diluteSet.reset();
-    bitset<32> bset = getCodeAsBitSet32();
-    for (int c = 6, d = 0; c < 18; c++, d++)
-    {
-      diluteSet[d] = bset[c];
-    }
-    diluteCode = diluteSet.to_ulong();
+    this->dilutionCoatName = calculateDilutionCoatName();
     return;
   }
-  Dilution(Dilution &)
+  Dilution(Dilution &src)
   {
+    this->dilutionCoatName = calculateDilutionCoatName(src.getBaseSet(), src.getDiluteSet());
     return;
   }
   Dilution &operator=(const Dilution *src)
   {
+    if (src == this)
+    {
+      return *this;
+    }
+    this->dilutionCoatName = calculateDilutionCoatName(src->getBaseSet(), src->getDiluteSet());
     return *this;
   }
   virtual ~Dilution()
@@ -48,18 +45,21 @@ public:
     return;
   }
 
+  string getDilutionCoatName();
+
   string diluteToString();
   unsigned long int getDilute();
   string getDiluteString();
-  bitset<32> getDiluteBitset32();
-  bitset<12> getDiluteBitset12();
   string
   getDilutionsList();
   bool hasDilutions();
-
-  string getDiluteBin();
+  string getDiluteAlleles();
 
   friend ostream &operator<<(ostream &os, Dilution &dl);
 
-  string calculateDilutionCoat();
+  string calculateDilutionCoatName();
+  string calculateDilutionCoatName(bitset<6> bset, bitset<12> dset);
+  string calculateDilutionCoatName(bitset<32> fset);
+
+  string calculateDilutionCoatName(unsigned long int dcode);
 };

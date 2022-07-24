@@ -26,9 +26,19 @@ unsigned long int CoatCode::getCodeAsULong() const
   return code;
 }
 
-bitset<32> CoatCode::getCodeAsBitSet32() const
+bitset<32> CoatCode::getFullSet() const
 {
-  return codeSet;
+  return fullSet;
+}
+
+bitset<6> CoatCode::getBaseSet() const { return baseSet; }
+bitset<12> CoatCode::getDiluteSet() const { return diluteSet; }
+bitset<4> CoatCode::getFadeSet() const { return fadeSet; }
+bitset<10> CoatCode::getMarkSet() const { return markSet; }
+
+string CoatCode::getSectionedBin() const
+{
+  return sectionedBin;
 }
 
 string CoatCode::getCodeAsString() const
@@ -52,7 +62,7 @@ string CoatCode::codeToString()
   infoString.append("\n\r  Full Decimal Code: ");
   infoString.append(to_string(code));
   infoString.append("\n\r  Full Binary Code: ");
-  infoString.append(getCodeAsBitSet32().to_string());
+  infoString.append(getFullSet().to_string());
   infoString.append("\n\r  Sectioned bin: ");
   infoString.append((getSectionedBin()));
   return infoString;
@@ -63,7 +73,7 @@ string CoatCode::getSectionedBin()
   string sectionedBin = "";
   for (int i = 31; i >= 0; i--)
   {
-    sectionedBin.append(to_string(codeSet[i]));
+    sectionedBin.append(to_string(fullSet[i]));
     if (i == 26 || i == 14 || i == 10) // i is at the last value of a code section
     {
       sectionedBin.append("-");
