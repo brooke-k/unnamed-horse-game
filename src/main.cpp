@@ -6,15 +6,22 @@
  */
 
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <bitset>
 #include "./classes/include/coat.hpp"
 
 using namespace std;
 
 int main(void)
 {
+  bitset<32> maxCalc(0);
+  maxCalc.set();
+  srand(time(NULL));
+  unsigned long int randVal = rand();
 
-  Coat testCode(94897733);
-  cout << testCode << endl;
+  Coat testBase(randVal);
+  cout << testBase << endl;
 
   cout << "END" << endl;
 
