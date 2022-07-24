@@ -121,7 +121,10 @@ public:
   string getPrintTopBorder();
   string getPrintSection();
   string addPrintLine(string baseString, string toPrint, int indentLevel);
+  string addPrintLine(string baseString, string toPrintFirst, string toPrintSecond, int indentLevel);
+
   string addPrintLine(string baseString, string toPrint);
+  string addPrintLine(string baseString, string toPrintFirst, string toPrintSecond);
 
   ~CoatCode()
   {

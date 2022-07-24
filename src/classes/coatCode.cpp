@@ -58,58 +58,62 @@ void CoatCode::setCoatName(string coatName)
 
 string CoatCode::getPrintTopBorder()
 {
-  string topBorder = "\n\r\u250f";
-  for (int i = 0; i < 47; i++)
+  string topBorder = "\n\r\u250F";
+  for (int i = 0; i < 62; i++)
   {
     topBorder.append("\u2501");
   }
+  topBorder.append("\u2513");
   return topBorder;
 }
 
 string CoatCode::getPrintTitleBorder()
 {
   string titleBorder = "\n\r\u2523";
-  for (int i = 0; i < 47; i++)
+  for (int i = 0; i < 62; i++)
   {
     titleBorder.append("\u2501");
   }
+  titleBorder.append("\u252B");
   return titleBorder;
 }
 
 string CoatCode::getPrintSection()
 {
   string printSection = "\n\r\u2520";
-  for (int i = 0; i < 47; i++)
+  for (int i = 0; i < 62; i++)
   {
     printSection.append("\u2500");
   }
+  printSection.append("\u2528");
+
   return printSection;
 }
 
 string CoatCode::codeToString()
 {
   string infostr(getPrintTopBorder());
-  infostr = addPrintLine(infostr, "      HORSE COAT INFO", 3);
+  infostr = addPrintLine(infostr, "            HORSE COAT INFO", 3);
   infostr.append(getPrintTitleBorder());
-  infostr = addPrintLine(infostr, "ESSENTIAL COAT DATA", 0);
+  infostr = addPrintLine(infostr, "ESSENTIAL COAT DATA");
+  infostr = addPrintLine(infostr, "Dec. Code: ", to_string(code), 1);
+  infostr = addPrintLine(infostr, "Bin. Code: ", getFullSet().to_string(), 1);
+  infostr = addPrintLine(infostr, "Seg. Bin.: ", getSectionedBin(), 1);
   infostr.append(getPrintSection());
-  infostr = addPrintLine(infostr, "Full Decimal Code: ", 1);
-  infostr = addPrintLine(infostr, to_string(code), 2);
-  infostr = addPrintLine(infostr, "Full Binary Code: ", 1);
-  infostr = addPrintLine(infostr, getFullSet().to_string(), 2);
-  infostr = addPrintLine(infostr, "Sectioned bin: ", 1);
-  infostr = addPrintLine(infostr, (getSectionedBin()), 2);
   return infostr;
 }
 
-string CoatCode::addPrintLine(string baseString, string toPrint, int indentLevel)
+string CoatCode::addPrintLine(string baseString, string toPrintFirst, string toPrintSecond, int indentLevel)
 {
   string originalString = baseString;
-  string printLine = toPrint;
-  if (indentLevel < 2)
+  string printLine = toPrintFirst;
+  if (indentLevel < 1)
   {
-
     originalString.append("\n\r\u2503  ");
+  }
+  else if (indentLevel == 1)
+  {
+    originalString.append("\n\r\u2503    ");
   }
   else if (indentLevel == 2)
   {
@@ -125,12 +129,23 @@ string CoatCode::addPrintLine(string baseString, string toPrint, int indentLevel
   }
 
   originalString.append(printLine);
+  originalString.append(toPrintSecond);
+  originalString.append("\e[64G\u2503");
   return originalString;
+}
+string CoatCode::addPrintLine(string baseString, string toPrint, int indentLevel)
+{
+  return addPrintLine(baseString, toPrint, "", indentLevel);
 }
 
 string CoatCode::addPrintLine(string baseString, string toPrint)
 {
-  return addPrintLine(baseString, toPrint, 0);
+  return addPrintLine(baseString, toPrint, "", 0);
+}
+
+string CoatCode::addPrintLine(string baseString, string toPrintFirst, string toPrintSecond)
+{
+  return addPrintLine(baseString, toPrintFirst, toPrintSecond, 0);
 }
 
 string CoatCode::getSectionedBin()
