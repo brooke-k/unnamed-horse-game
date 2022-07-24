@@ -43,8 +43,11 @@ string BaseCoat::calculateBaseCoatName()
 string BaseCoat::baseToString()
 {
   string infoString = codeToString();
-  infoString.append(("\n\r  Base coat name: "));
-  infoString.append(getBaseCoatName());
+  infoString = addPrintLine(infoString, "BASE COAT DATA");
+  infoString = addPrintLine(infoString, "Base Coat: ", getBaseCoatName(), 1);
+  infoString = addPrintLine(infoString, "     Code: ", getBaseSet().to_string(), 1);
+  infoString = addPrintLine(infoString, "  Alleles: ", getBaseAlleles(), 1);
+
   return infoString;
 }
 
