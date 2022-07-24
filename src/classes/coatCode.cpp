@@ -28,7 +28,7 @@ unsigned long int CoatCode::getCodeAsULong() const
 
 bitset<32> CoatCode::getCodeAsBitSet32() const
 {
-  return bitset<32>(code);
+  return codeSet;
 }
 
 string CoatCode::getCodeAsString() const

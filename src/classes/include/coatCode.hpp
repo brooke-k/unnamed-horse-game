@@ -26,7 +26,10 @@ public:
     cout << "CoatCode constructor called" << endl;
     this->code = code;
     this->codeSet = bitset<32>(code);
+    cout << "1. " << this->codeSet.to_string() << endl;
+
     this->coatName = "Not calculated";
+    cout << "2. " << this->codeSet.to_string() << endl;
   }
   CoatCode(CoatCode &src)
   {

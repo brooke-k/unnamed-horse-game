@@ -22,18 +22,18 @@ class BaseCoat : public CoatCode
 public:
   BaseCoat(unsigned long int code = (unsigned long int)0) : CoatCode(code)
   {
-    cout << "Base construct called." << endl;
+    cout << "Base construct called: ";
     this->baseCode = 0;
     this->baseSet = bitset<6>(0);
-    bitset<8> tempSet(0);
     bitset<32> bset = getCodeAsBitSet32();
-    for (int i = 0; i < 6; i++)
+    cout << "//" << bset.to_string() << "//" << endl;
+    for (int i = 31; i > 25; i--)
     {
-      this->baseSet[i] = bset[i];
-      tempSet[i] = bset[i];
+      this->baseSet[i - 26] = bset[i];
     }
-
-    this->baseCode = tempSet.to_ulong();
+    cout << "Bananas" << endl;
+    this->baseCode = baseSet.to_ulong();
+    cout << getCodeAsBitSet32() << endl;
     cout << "BaseCode " << this->baseCode << endl;
   }
 
@@ -55,7 +55,6 @@ public:
   string getBaseString();
   string getBaseName();
 
-  string getBaseName(unsigned short code);
   string getBaseName(unsigned long int code);
 
   unsigned long int getBase() const;
