@@ -56,16 +56,81 @@ void CoatCode::setCoatName(string coatName)
   this->coatName = coatName;
 }
 
+string CoatCode::getPrintTopBorder()
+{
+  string topBorder = "\n\r\u250f";
+  for (int i = 0; i < 47; i++)
+  {
+    topBorder.append("\u2501");
+  }
+  return topBorder;
+}
+
+string CoatCode::getPrintTitleBorder()
+{
+  string titleBorder = "\n\r\u2523";
+  for (int i = 0; i < 47; i++)
+  {
+    titleBorder.append("\u2501");
+  }
+  return titleBorder;
+}
+
+string CoatCode::getPrintSection()
+{
+  string printSection = "\n\r\u2520";
+  for (int i = 0; i < 47; i++)
+  {
+    printSection.append("\u2500");
+  }
+  return printSection;
+}
+
 string CoatCode::codeToString()
 {
-  string infoString = "\n\r|-- COAT CODE DATA --|";
-  infoString.append("\n\r  Full Decimal Code: ");
-  infoString.append(to_string(code));
-  infoString.append("\n\r  Full Binary Code: ");
-  infoString.append(getFullSet().to_string());
-  infoString.append("\n\r  Sectioned bin: ");
-  infoString.append((getSectionedBin()));
-  return infoString;
+  string infostr(getPrintTopBorder());
+  infostr = addPrintLine(infostr, "      HORSE COAT INFO", 3);
+  infostr.append(getPrintTitleBorder());
+  infostr = addPrintLine(infostr, "ESSENTIAL COAT DATA", 0);
+  infostr.append(getPrintSection());
+  infostr = addPrintLine(infostr, "Full Decimal Code: ", 1);
+  infostr = addPrintLine(infostr, to_string(code), 2);
+  infostr = addPrintLine(infostr, "Full Binary Code: ", 1);
+  infostr = addPrintLine(infostr, getFullSet().to_string(), 2);
+  infostr = addPrintLine(infostr, "Sectioned bin: ", 1);
+  infostr = addPrintLine(infostr, (getSectionedBin()), 2);
+  return infostr;
+}
+
+string CoatCode::addPrintLine(string baseString, string toPrint, int indentLevel)
+{
+  string originalString = baseString;
+  string printLine = toPrint;
+  if (indentLevel < 2)
+  {
+
+    originalString.append("\n\r\u2503  ");
+  }
+  else if (indentLevel == 2)
+  {
+    originalString.append("\n\r\u2503      ");
+  }
+  else if (indentLevel == 3)
+  {
+    originalString.append("\n\r\u2503          ");
+  }
+  else
+  {
+    originalString.append("\n\r\u2503              ");
+  }
+
+  originalString.append(printLine);
+  return originalString;
+}
+
+string CoatCode::addPrintLine(string baseString, string toPrint)
+{
+  return addPrintLine(baseString, toPrint, 0);
 }
 
 string CoatCode::getSectionedBin()

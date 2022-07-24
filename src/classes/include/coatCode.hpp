@@ -117,6 +117,12 @@ public:
   string getCoatName() const;
   void setCoatName(string coatName);
 
+  string getPrintTitleBorder();
+  string getPrintTopBorder();
+  string getPrintSection();
+  string addPrintLine(string baseString, string toPrint, int indentLevel);
+  string addPrintLine(string baseString, string toPrint);
+
   ~CoatCode()
   {
     return;
