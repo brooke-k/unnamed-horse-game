@@ -25,6 +25,11 @@ bool Dilution::hasDilutions()
   return anded.any();
 }
 
+string Dilution::getDiluteString()
+{
+  return diluteName;
+}
+
 bitset<32> Dilution::getDiluteBitset32()
 {
   return bitset<32>(diluteCode);
@@ -61,6 +66,8 @@ string Dilution::diluteToString()
     infoString.append(to_string(getDilute()));
     infoString.append("\n\r  Dilution Bin: ");
     infoString.append(getDiluteBin());
+    infoString.append("\n\r  Dilution name: ");
+    infoString.append(getDiluteString());
   }
   else
   {
@@ -71,24 +78,82 @@ string Dilution::diluteToString()
 
 string Dilution::calculateDilutionCoat()
 {
-  bitset<32> bset = getCodeAsBitSet32();
+  bitset<6> bset = getBaseBitset6();
+  bitset<12> dset = getDiluteBitset12();
   string coatName = getBaseName();
 
-  if (bset[0] || bset[1]) // White coats do not have any possible dilutions
+  if (bset[5] || bset[4]) // White coats do not have any possible dilutions
   {
-    coatName = "White";
+    this->diluteName = "White";
+    return diluteName;
   }
-  else if (diluteSet.to_ulong() < 4) // Matches all red coats
+  else if (!(bset[3] || bset[2])) // Matches all red coats
   {
-    coatName = calculateRedDilutions();
+    coatName = calculateRedDilutions(dset);
   }
-  else if (!(bset[4] || bset[5])) // Matches all black coats
+  else if (!(bset[0] || bset[1])) // Matches all black coats
   {
-    coatName = calculateBlackDilutions();
+    coatName = calculateBlackDilutions(dset);
   }
   else // Matches all remaining (bay) dilutions
   {
-    coatName = calculateBayDilutions();
+    coatName = calculateBayDilutions(dset);
   }
+  coatName.append(calculateDunPresence(dset));
+  this->diluteName = coatName;
+  return diluteName;
+}
+
+string Dilution::calculateRedDilutions(bitset<12> dset)
+{
+
+  string coatName = "Red";
+  if (dset[8] || dset[9]) // Ch/Ch or Ch/N
+  {
+    coatName = "Gold";
+  }
+  else if (dset[6] || dset[7]) // Cr/Cr or Cr/N
+  {
+    if (dset[6] && dset[7]) // Cr/Cr
+    {
+      coatName = "Cremello";
+    }
+    else
+    {
+      if (dset[10] || dset[11]) // Cr/Prl
+      {
+        coatName = "Pseudo-cremello";
+      }
+      else // Cr/N
+      {
+        coatName = "Palomino";
+      }
+    }
+  }
+  else if (dset[10] && dset[11])
+  {
+    coatName = "Apricot";
+  }
+
   return coatName;
+}
+
+string Dilution::calculateBayDilutions(bitset<12> dset) { return "N/A"; }
+
+string Dilution::calculateBlackDilutions(bitset<12> dset) { return "N/A"; }
+
+string Dilution::calculateDunPresence(bitset<12> dset)
+{
+  if (dset[3] || dset[1]) // D/D, D/nd1, D/nd2 genotype
+  {
+    return "-base dun with primitive markings";
+  }
+  else if (!(dset[2] || dset[0])) // nd2/nd2 genotype
+  {
+    return "";
+  }
+  else // nd2/nd1
+  {
+    return " with primitive markings";
+  }
 }

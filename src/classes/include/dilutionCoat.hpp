@@ -17,9 +17,10 @@ private:
   bitset<12> diluteSet;
   string diluteName;
 
-  string calculateRedDilutions();
-  string calculateBlackDilutions();
-  string calculateBayDilutions();
+  string calculateRedDilutions(bitset<12> bset);
+  string calculateBlackDilutions(bitset<12> bset);
+  string calculateBayDilutions(bitset<12> bset);
+  string calculateDunPresence(bitset<12> bset);
 
 public:
   Dilution(unsigned long int code = (unsigned long int)0) : BaseCoat(code)
