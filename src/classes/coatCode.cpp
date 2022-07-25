@@ -17,6 +17,7 @@ ostream &operator<<(ostream &os, CoatCode &cc)
 {
 
   os << cc.codeToString() << endl;
+  os << cc.getBottomBorder() << endl;
   return os;
 }
 
@@ -78,6 +79,17 @@ string CoatCode::getPrintTitleBorder()
   return titleBorder;
 }
 
+string CoatCode::getBottomBorder()
+{
+  string bottomBorder = "\n\r\u2517";
+  for (int i = 0; i < 62; i++)
+  {
+    bottomBorder.append("\u2501");
+  }
+  bottomBorder.append("\u251B");
+  return bottomBorder;
+}
+
 string CoatCode::getPrintSection()
 {
   string printSection = "\n\r\u2520";
@@ -96,10 +108,9 @@ string CoatCode::codeToString()
   infostr = addPrintLine(infostr, "            HORSE COAT INFO", 3);
   infostr.append(getPrintTitleBorder());
   infostr = addPrintLine(infostr, "ESSENTIAL COAT DATA");
-  infostr = addPrintLine(infostr, "Dec. Code: ", to_string(code), 1);
-  infostr = addPrintLine(infostr, "Bin. Code: ", getFullSet().to_string(), 1);
-  infostr = addPrintLine(infostr, "Seg. Bin.: ", getSectionedBin(), 1);
-  infostr.append(getPrintSection());
+  infostr = addPrintLine(infostr, "Decimal code: ", to_string(code), 1);
+  infostr = addPrintLine(infostr, " Binary code: ", getFullSet().to_string(), 1);
+  infostr = addPrintLine(infostr, " Seg. binary: ", getSectionedBin(), 1);
   return infostr;
 }
 

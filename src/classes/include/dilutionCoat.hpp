@@ -18,7 +18,8 @@ private:
   string calculateRedDilutions(bitset<12> bset);
   string calculateBlackDilutions(bitset<12> bset);
   string calculateBayDilutions(bitset<12> bset);
-  string calculateDunPresence(bitset<12> bset);
+  string calculateDunPresence(bitset<12> bset, string &dilutionCoat);
+  void calculateDilutions();
 
 public:
   Dilution(unsigned long int code = (unsigned long int)0) : BaseCoat(code)
@@ -45,7 +46,9 @@ public:
     return;
   }
 
-  string getDilutionCoatName();
+  void setDilutionCoatName(string dilutionCoatName);
+
+  string getDilutionCoatName() const;
 
   string diluteToString();
   unsigned long int getDilute();
@@ -54,7 +57,7 @@ public:
   getDilutionsList();
   bool hasDilutions();
   string getDiluteAlleles();
-
+  bool hasPrimitiveMarkings();
   friend ostream &operator<<(ostream &os, Dilution &dl);
 
   string calculateDilutionCoatName();

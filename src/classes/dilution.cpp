@@ -25,7 +25,7 @@ bool Dilution::hasDilutions()
   return anded.any();
 }
 
-string Dilution::getDilutionCoatName()
+string Dilution::getDilutionCoatName() const
 {
   return dilutionCoatName;
 }
@@ -33,25 +33,61 @@ string Dilution::getDilutionCoatName()
 string Dilution::getDiluteAlleles()
 {
 
-  string temp[] = {"cr", "cr", "ch", "ch", "prl", "prl", "z", "z"};
+  string temp[] = {"Cr", "Cr", "Ch", "Ch", "Prl", "Prl", "Z", "Z"};
   bitset<12> dset = getDiluteSet();
+  cout << "dset: " << dset.to_string() << endl;
   string alleleString = "";
-  for (int i = 12, t = 0; i >= 5; i--, t++)
+  for (int i = 0; i < 8; i++)
   {
-    cout << "dset: " << dset[i] << " at i=" << i << endl;
+    if (dset[11 - i])
+    {
+      alleleString.append(temp[i]);
+    }
+    else
+    {
+      alleleString.append("N");
+    }
+
+    if (i % 2 == 1)
+    {
+      alleleString.append("-");
+    }
+    else if (i < 8)
+    {
+      alleleString.append("/");
+    }
+  }
+  for (int i = 8; i < 12; i++)
+  {
+
     if (dset[i])
     {
-      cout << "uppered" << endl;
-      temp[t].at(0) = toupper(temp[t].at(0));
+      alleleString.append("D");
     }
-    alleleString.append(temp[t]);
+    else
+    {
+      if (dset[i + 1])
+      {
+        alleleString.append("nd1");
+      }
+      else
+      {
+        alleleString.append("nd2");
+      }
+    }
+    if (i == 8)
+    {
+      alleleString.append("/");
+    }
+    i++;
   }
   return alleleString;
 }
 
 ostream &operator<<(ostream &os, Dilution &dl)
 {
-  os << dl.diluteToString() << endl;
+  os << dl.diluteToString();
+  os << dl.getBottomBorder() << endl;
   return os;
 }
 
@@ -60,22 +96,22 @@ string Dilution::diluteToString()
 
   // string infoString = ((BaseCoat)(*this)).toString();
   string infoString = baseToString();
-  if (hasDilutions())
-  {
-    infoString.append("\n\r  Dilution code: ");
-    infoString.append(to_string(getDiluteSet().to_ullong()));
-    infoString.append(", ");
-    infoString.append(getDiluteAlleles());
-    infoString.append("\n\r  Dilution Bin: ");
-    infoString.append(getDiluteSet().to_string());
-    infoString.append("\n\r  Dilution name: ");
-    infoString.append(getDilutionCoatName());
-  }
-  else
-  {
-    infoString.append("\n\r  Dilutions: None");
-  }
+  infoString.append(getPrintSection());
+  infoString = addPrintLine(infoString, "DILUTION DATA", 0);
+  infoString = addPrintLine(infoString, "Diluted coat: ", getDilutionCoatName(), 1);
+  infoString = addPrintLine(infoString, "Code segment: ", getDiluteSet().to_string(), 1);
+  infoString = addPrintLine(infoString, "     Alleles: ", getDiluteAlleles(), 1);
   return infoString;
+}
+
+void Dilution::setDilutionCoatName(string dilutionCoatName)
+{
+  this->dilutionCoatName = dilutionCoatName;
+}
+
+void Dilution::calculateDilutions()
+{
+  setDilutionCoatName(calculateDilutionCoatName());
 }
 
 string Dilution::calculateDilutionCoatName()
@@ -120,7 +156,7 @@ string Dilution::calculateDilutionCoatName(bitset<6> bset, bitset<12> dset)
   {
     dilutionName = calculateBlackDilutions(dset);
   }
-  dilutionName.append(calculateDunPresence(dset));
+  calculateDunPresence(dset, dilutionName);
   return dilutionName;
 }
 
@@ -163,22 +199,111 @@ string Dilution::calculateRedDilutions(bitset<12> dset)
   return coatName;
 }
 
-string Dilution::calculateBayDilutions(bitset<12> dset) { return "N/A"; }
-
-string Dilution::calculateBlackDilutions(bitset<12> dset) { return "N/A"; }
-
-string Dilution::calculateDunPresence(bitset<12> dset)
+string Dilution::calculateBayDilutions(bitset<12> dset)
 {
+
+  string coatName = "Bay";
+  bool hasSilver = false;
+  if (dset[4] || dset[5]) // Check for silver influence
+  {
+    hasSilver = true;
+  }
+  if (dset[8] || dset[9])
+  {
+    coatName = "Amber";
+  }
+  else if (dset[6] || dset[7])
+  {
+    if (dset[6] && dset[7])
+    {
+      coatName = "Perlino";
+    }
+    else
+    {
+      if (dset[10] || dset[11])
+      {
+        coatName = "Pseudo-Perlino";
+      }
+      else
+      {
+        coatName = "Buckskin";
+      }
+    }
+  }
+  else if (dset[10] && dset[11])
+  {
+    coatName = "Apricot";
+  }
+  if (hasSilver)
+  {
+    string temp = coatName;
+    coatName = "Flaxen ";
+    coatName.append(temp);
+  }
+  return coatName;
+}
+
+string Dilution::calculateBlackDilutions(bitset<12> dset)
+{
+  string coatName = "Black";
+  bool hasSilver = false;
+  if (dset[4] || dset[5]) // Check for silver influence
+  {
+    hasSilver = true;
+  }
+  if (dset[8] || dset[9]) // Check for champagne
+  {
+    coatName = "Classic Champagne";
+  }
+  else if (dset[6] || dset[7]) // Check for cream
+  {
+    if (dset[6] && dset[7])
+    {
+      coatName = "Smokey Cream";
+    }
+    else
+    {
+      if (dset[10] || dset[11]) // Check for pearl-cream heterozygous
+      {
+        coatName = "Pseudo-Smokey Cream";
+      }
+      else
+      {
+        coatName = "Smokey Black";
+      }
+    }
+  }
+  else if (dset[10] && dset[11]) // Check for Prl/Prl
+  {
+    coatName = "Apricot";
+  }
+  if (hasSilver)
+  {
+    string temp = coatName;
+    coatName = "Silver ";
+    coatName.append(temp);
+  }
+  return coatName;
+}
+
+string Dilution::calculateDunPresence(bitset<12> dset, string &dilutionCoat)
+{
+  string tempCoat = dilutionCoat;
   if (dset[3] || dset[1]) // D/D, D/nd1, D/nd2 genotype
   {
-    return "-base dun with primitive markings";
+    dilutionCoat.assign("Primitive ");
+    dilutionCoat.append(tempCoat);
+    dilutionCoat.append(" Dun");
+    return dilutionCoat;
   }
   else if (!(dset[2] || dset[0])) // nd2/nd2 genotype
   {
-    return "";
+    return dilutionCoat;
   }
   else // nd2/nd1
   {
-    return " with primitive markings";
+    dilutionCoat.assign("Primitive ");
+    dilutionCoat.append(tempCoat);
+    return dilutionCoat;
   }
 }

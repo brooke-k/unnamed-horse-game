@@ -120,6 +120,7 @@ public:
   string getPrintTitleBorder();
   string getPrintTopBorder();
   string getPrintSection();
+  string getBottomBorder();
   string addPrintLine(string baseString, string toPrint, int indentLevel);
   string addPrintLine(string baseString, string toPrintFirst, string toPrintSecond, int indentLevel);
 
@@ -138,3 +139,4 @@ public:
   friend ostream &
   operator<<(ostream &os, CoatCode &cc);
 };
+string calculateBase();

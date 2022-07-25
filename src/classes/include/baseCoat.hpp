@@ -35,7 +35,6 @@ public:
   {
     if (this == src)
     {
-
       return *this;
     }
     this->baseCoatName = calculateBaseCoatName();

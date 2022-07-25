@@ -43,11 +43,11 @@ string BaseCoat::calculateBaseCoatName()
 string BaseCoat::baseToString()
 {
   string infoString = codeToString();
+  infoString.append(getPrintSection());
   infoString = addPrintLine(infoString, "BASE COAT DATA");
-  infoString = addPrintLine(infoString, "Base Coat: ", getBaseCoatName(), 1);
-  infoString = addPrintLine(infoString, "     Code: ", getBaseSet().to_string(), 1);
-  infoString = addPrintLine(infoString, "  Alleles: ", getBaseAlleles(), 1);
-
+  infoString = addPrintLine(infoString, "   Base coat: ", getBaseCoatName(), 1);
+  infoString = addPrintLine(infoString, "Code segment: ", getBaseSet().to_string(), 1);
+  infoString = addPrintLine(infoString, "     Alleles: ", getBaseAlleles(), 1);
   return infoString;
 }
 
@@ -72,6 +72,14 @@ string BaseCoat::getBaseAlleles()
       tempAlleles[i] = temp;
     }
     alleleString.append(tempAlleles[i]);
+    if (i % 2 == 1 && i < 5)
+    {
+      alleleString.append("-");
+    }
+    else if (i < 5)
+    {
+      alleleString.append("/");
+    }
   }
   return alleleString;
 }
@@ -79,5 +87,6 @@ string BaseCoat::getBaseAlleles()
 ostream &operator<<(ostream &os, BaseCoat &bc)
 {
   os << bc.baseToString() << endl;
+  os << bc.getBottomBorder() << endl;
   return os;
 }
