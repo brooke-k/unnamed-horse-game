@@ -26,7 +26,7 @@ string FadeCoat::fadeToString()
 {
   string infostr = diluteToString();
   infostr.append(getPrintSection());
-  infostr = addPrintLine(infostr, "FADE DATA", 0);
+  infostr = addPrintLine(infostr, "CODE FADE DATA", 0);
   infostr = addPrintLine(infostr, "  Faded coat: ", getFadeCoatName(), 1);
   infostr = addPrintLine(infostr, "Code segment: ", getFadeSet().to_string(), 1);
   infostr = addPrintLine(infostr, "     Alleles: ", getFadeAlleles(), 1);

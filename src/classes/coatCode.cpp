@@ -105,7 +105,7 @@ string CoatCode::getPrintSection()
 string CoatCode::codeToString()
 {
   string infostr(getPrintTopBorder());
-  infostr = addPrintLine(infostr, "            HORSE COAT INFO", 3);
+  infostr = addPrintLine(infostr, "         \u2605 HORSE \u2605 COAT \u2605 INFO \u2605", 3);
   infostr.append(getPrintTitleBorder());
   infostr = addPrintLine(infostr, "ESSENTIAL COAT DATA");
   infostr = addPrintLine(infostr, "Decimal code: ", to_string(code), 1);

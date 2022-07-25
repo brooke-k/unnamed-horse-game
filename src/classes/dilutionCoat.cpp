@@ -35,7 +35,6 @@ string DilutionCoat::getDiluteAlleles()
 
   string temp[] = {"Cr", "Cr", "Ch", "Ch", "Prl", "Prl", "Z", "Z"};
   bitset<12> dset = getDiluteSet();
-  cout << "dset: " << dset.to_string() << endl;
   string alleleString = "";
   for (int i = 0; i < 8; i++)
   {
@@ -97,7 +96,7 @@ string DilutionCoat::diluteToString()
   // string infoString = ((BaseCoat)(*this)).toString();
   string infoString = baseToString();
   infoString.append(getPrintSection());
-  infoString = addPrintLine(infoString, "DILUTION DATA", 0);
+  infoString = addPrintLine(infoString, "COAT DILUTION DATA", 0);
   infoString = addPrintLine(infoString, "Diluted coat: ", getDilutionCoatName(), 1);
   infoString = addPrintLine(infoString, "Code segment: ", getDiluteSet().to_string(), 1);
   infoString = addPrintLine(infoString, "     Alleles: ", getDiluteAlleles(), 1);

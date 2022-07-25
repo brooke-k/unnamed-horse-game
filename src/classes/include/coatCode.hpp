@@ -28,8 +28,6 @@ public:
   // Constructors and Destructors
   CoatCode(unsigned long int code = (unsigned long int)0)
   {
-    cout << "CoatCode constructor called" << endl;
-
     this->code = code;
     this->fullSet = bitset<32>(code);
     this->baseSet = bitset<6>(0);
