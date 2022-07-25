@@ -10,7 +10,7 @@
 #include <bitset>
 #include <string>
 
-class Dilution : public BaseCoat
+class DilutionCoat : public BaseCoat
 {
 private:
   string dilutionCoatName;
@@ -22,17 +22,17 @@ private:
   void calculateDilutions();
 
 public:
-  Dilution(unsigned long int code = (unsigned long int)0) : BaseCoat(code)
+  DilutionCoat(unsigned long int code = (unsigned long int)0) : BaseCoat(code)
   {
     this->dilutionCoatName = calculateDilutionCoatName();
     return;
   }
-  Dilution(Dilution &src)
+  DilutionCoat(DilutionCoat &src)
   {
     this->dilutionCoatName = calculateDilutionCoatName(src.getBaseSet(), src.getDiluteSet());
     return;
   }
-  Dilution &operator=(const Dilution *src)
+  DilutionCoat &operator=(const DilutionCoat *src)
   {
     if (src == this)
     {
@@ -41,7 +41,7 @@ public:
     this->dilutionCoatName = calculateDilutionCoatName(src->getBaseSet(), src->getDiluteSet());
     return *this;
   }
-  virtual ~Dilution()
+  virtual ~DilutionCoat()
   {
     return;
   }
@@ -58,7 +58,7 @@ public:
   bool hasDilutions();
   string getDiluteAlleles();
   bool hasPrimitiveMarkings();
-  friend ostream &operator<<(ostream &os, Dilution &dl);
+  friend ostream &operator<<(ostream &os, DilutionCoat &dl);
 
   string calculateDilutionCoatName();
   string calculateDilutionCoatName(bitset<6> bset, bitset<12> dset);

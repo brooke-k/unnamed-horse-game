@@ -5,10 +5,10 @@
  *
  */
 
-#include "./dilutionCoat.hpp"
+#include "./fadeCoat.hpp"
 
-class Coat : public Dilution
+class Coat : public FadeCoat
 {
 public:
-  Coat(unsigned long int code = 0) : Dilution(code) { return; }
+  Coat(unsigned long int code = 0) : FadeCoat(code) { return; }
 };

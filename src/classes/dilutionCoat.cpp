@@ -14,7 +14,7 @@ using namespace std;
 
 // Getters and Setters
 
-bool Dilution::hasDilutions()
+bool DilutionCoat::hasDilutions()
 {
   unsigned long int bcode = getCodeAsULong();
   unsigned long int allDiluteUL = 67092480;
@@ -25,12 +25,12 @@ bool Dilution::hasDilutions()
   return anded.any();
 }
 
-string Dilution::getDilutionCoatName() const
+string DilutionCoat::getDilutionCoatName() const
 {
   return dilutionCoatName;
 }
 
-string Dilution::getDiluteAlleles()
+string DilutionCoat::getDiluteAlleles()
 {
 
   string temp[] = {"Cr", "Cr", "Ch", "Ch", "Prl", "Prl", "Z", "Z"};
@@ -84,14 +84,14 @@ string Dilution::getDiluteAlleles()
   return alleleString;
 }
 
-ostream &operator<<(ostream &os, Dilution &dl)
+ostream &operator<<(ostream &os, DilutionCoat &dl)
 {
   os << dl.diluteToString();
   os << dl.getBottomBorder() << endl;
   return os;
 }
 
-string Dilution::diluteToString()
+string DilutionCoat::diluteToString()
 {
 
   // string infoString = ((BaseCoat)(*this)).toString();
@@ -104,22 +104,22 @@ string Dilution::diluteToString()
   return infoString;
 }
 
-void Dilution::setDilutionCoatName(string dilutionCoatName)
+void DilutionCoat::setDilutionCoatName(string dilutionCoatName)
 {
   this->dilutionCoatName = dilutionCoatName;
 }
 
-void Dilution::calculateDilutions()
+void DilutionCoat::calculateDilutions()
 {
   setDilutionCoatName(calculateDilutionCoatName());
 }
 
-string Dilution::calculateDilutionCoatName()
+string DilutionCoat::calculateDilutionCoatName()
 {
   return calculateDilutionCoatName(getBaseSet(), getDiluteSet());
 }
 
-string Dilution::calculateDilutionCoatName(bitset<32> fset)
+string DilutionCoat::calculateDilutionCoatName(bitset<32> fset)
 {
   bitset<6> bset(0);
   bitset<12> dset(0);
@@ -137,7 +137,7 @@ string Dilution::calculateDilutionCoatName(bitset<32> fset)
   return calculateDilutionCoatName(bset, dset);
 }
 
-string Dilution::calculateDilutionCoatName(bitset<6> bset, bitset<12> dset)
+string DilutionCoat::calculateDilutionCoatName(bitset<6> bset, bitset<12> dset)
 {
   string dilutionName = getBaseCoatName();
   if (dilutionName.compare("White") == 0)
@@ -160,12 +160,12 @@ string Dilution::calculateDilutionCoatName(bitset<6> bset, bitset<12> dset)
   return dilutionName;
 }
 
-string Dilution::calculateDilutionCoatName(unsigned long int fcode)
+string DilutionCoat::calculateDilutionCoatName(unsigned long int fcode)
 {
   return calculateDilutionCoatName(bitset<32>(fcode));
 }
 
-string Dilution::calculateRedDilutions(bitset<12> dset)
+string DilutionCoat::calculateRedDilutions(bitset<12> dset)
 {
 
   string coatName = "Red";
@@ -199,7 +199,7 @@ string Dilution::calculateRedDilutions(bitset<12> dset)
   return coatName;
 }
 
-string Dilution::calculateBayDilutions(bitset<12> dset)
+string DilutionCoat::calculateBayDilutions(bitset<12> dset)
 {
 
   string coatName = "Bay";
@@ -243,7 +243,7 @@ string Dilution::calculateBayDilutions(bitset<12> dset)
   return coatName;
 }
 
-string Dilution::calculateBlackDilutions(bitset<12> dset)
+string DilutionCoat::calculateBlackDilutions(bitset<12> dset)
 {
   string coatName = "Black";
   bool hasSilver = false;
@@ -286,7 +286,7 @@ string Dilution::calculateBlackDilutions(bitset<12> dset)
   return coatName;
 }
 
-string Dilution::calculateDunPresence(bitset<12> dset, string &dilutionCoat)
+string DilutionCoat::calculateDunPresence(bitset<12> dset, string &dilutionCoat)
 {
   string tempCoat = dilutionCoat;
   if (dset[3] || dset[1]) // D/D, D/nd1, D/nd2 genotype
