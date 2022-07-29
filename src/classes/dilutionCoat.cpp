@@ -147,7 +147,7 @@ string DilutionCoat::calculateDilutionCoatName(bitset<6> bset, bitset<12> dset)
   {
     dilutionName = calculateBayDilutions(dset);
   }
-  else if (dilutionName.compare("Red") == 0)
+  else if (dilutionName.compare("Chestnut") == 0)
   {
     dilutionName = calculateRedDilutions(dset);
   }
@@ -167,20 +167,20 @@ string DilutionCoat::calculateDilutionCoatName(unsigned long int fcode)
 string DilutionCoat::calculateRedDilutions(bitset<12> dset)
 {
 
-  string coatName = "Red";
+  string coatName = "Chestnut";
   if (dset[8] || dset[9]) // Ch/Ch or Ch/N
   {
     coatName = "Gold";
   }
-  else if (dset[6] || dset[7]) // Cr/Cr or Cr/N
+  else if (dset[10] || dset[11]) // Cr/Cr or Cr/N
   {
-    if (dset[6] && dset[7]) // Cr/Cr
+    if (dset[10] && dset[11]) // Cr/Cr
     {
       coatName = "Cremello";
     }
     else
     {
-      if (dset[10] || dset[11]) // Cr/Prl
+      if (dset[6] || dset[7]) // Cr/Prl
       {
         coatName = "Pseudo-cremello";
       }
@@ -190,7 +190,7 @@ string DilutionCoat::calculateRedDilutions(bitset<12> dset)
       }
     }
   }
-  else if (dset[10] && dset[11])
+  else if (dset[6] && dset[7])
   {
     coatName = "Apricot";
   }
@@ -206,20 +206,21 @@ string DilutionCoat::calculateBayDilutions(bitset<12> dset)
   if (dset[4] || dset[5]) // Check for silver influence
   {
     hasSilver = true;
+    coatName = "Brown";
   }
   if (dset[8] || dset[9])
   {
     coatName = "Amber";
   }
-  else if (dset[6] || dset[7])
+  else if (dset[10] || dset[11])
   {
-    if (dset[6] && dset[7])
+    if (dset[10] && dset[11])
     {
       coatName = "Perlino";
     }
     else
     {
-      if (dset[10] || dset[11])
+      if (dset[6] || dset[7])
       {
         coatName = "Pseudo-Perlino";
       }
@@ -229,7 +230,7 @@ string DilutionCoat::calculateBayDilutions(bitset<12> dset)
       }
     }
   }
-  else if (dset[10] && dset[11])
+  else if (dset[6] && dset[7])
   {
     coatName = "Apricot";
   }
@@ -249,20 +250,21 @@ string DilutionCoat::calculateBlackDilutions(bitset<12> dset)
   if (dset[4] || dset[5]) // Check for silver influence
   {
     hasSilver = true;
+    coatName = "Chocolate";
   }
   if (dset[8] || dset[9]) // Check for champagne
   {
     coatName = "Classic Champagne";
   }
-  else if (dset[6] || dset[7]) // Check for cream
+  else if (dset[10] || dset[11]) // Check for cream
   {
-    if (dset[6] && dset[7])
+    if (dset[10] && dset[11])
     {
       coatName = "Smokey Cream";
     }
     else
     {
-      if (dset[10] || dset[11]) // Check for pearl-cream heterozygous
+      if (dset[6] || dset[7]) // Check for pearl-cream heterozygous
       {
         coatName = "Pseudo-Smokey Cream";
       }
@@ -272,7 +274,7 @@ string DilutionCoat::calculateBlackDilutions(bitset<12> dset)
       }
     }
   }
-  else if (dset[10] && dset[11]) // Check for Prl/Prl
+  else if (dset[6] && dset[7]) // Check for Prl/Prl
   {
     coatName = "Apricot";
   }
