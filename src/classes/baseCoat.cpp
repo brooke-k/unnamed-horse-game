@@ -12,7 +12,7 @@ string BaseCoat::calculateBaseCoatName(bitset<6> bset)
   }
   else if (!(bset[3] || bset[2]))
   {
-    return "Red";
+    return "Chestnut";
   }
   else if (bset[1] || bset[0])
   {

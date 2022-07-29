@@ -9,6 +9,7 @@
 #include <bitset>
 #include <iostream>
 #include <string>
+using namespace std;
 
 class FadeCoat : public DilutionCoat
 {

@@ -10,6 +10,8 @@
 #include <bitset>
 #include <string>
 
+using namespace std;
+
 class DilutionCoat : public BaseCoat
 {
 private:
