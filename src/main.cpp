@@ -18,11 +18,11 @@ int main(void)
   bitset<32> maxCalc(0);
   maxCalc.set();
   srand(time(NULL));
-  unsigned long int randVal = rand();
+  // unsigned long int randVal = rand();
 
-  Coat testBase(randVal);
+  FadeCoat testBase(rand());
+  // testBase.minPrint();
   cout << testBase << endl;
-
   cout << "END" << endl;
 
   return 0;
