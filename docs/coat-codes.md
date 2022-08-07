@@ -102,7 +102,7 @@ The specifications of these encodings is listed below.
 
 The dominance of dun alleles is continous, instead of following the binary pattern all other, so expression is based on a heriarchy of dominance. For dun alleles, that heirarchy follows D>nd1>nd2.
 
-A comparison of real equine genes and the equivalent 4-bit pattern used by //unnamed-horse-game// can be found below.
+A comparison of real equine genes and the equivalent 4-bit pattern used by `unnamed-horse-game` can be found below.
 
 | Real Equine Genes  (D/nd1/nd2) | 4-Bit Rep. (bits `17-14`)     | Decimal value  | Dilution expression*               |
 |--------------------------------|-------------------------------|----------------|------------------------------------|
@@ -115,7 +115,7 @@ A comparison of real equine genes and the equivalent 4-bit pattern used by //unn
 
 **Dun dilution affects both red and black hair follicles, so all base coats (except white) are affected. This dilution behaves most similarly to cream dilution with Cr/Cr dominance.*
 
-Because the official names for coats affected by dun dilution (both with and without primative markings) vary from breed to breed, //unnamed-horse-game// will refer to this dilution as the base coat name, followed by 'dun', and whether or not primative markings are present.
+Because the official names for coats affected by dun dilution (both with and without primative markings) vary from breed to breed, `unnamed-horse-game` will refer to this dilution as the base coat name, followed by 'dun', then the presence (or lack-there-of) of primative markings.
 
 | Dilutions Heirarchy (Most Dominant to Most Recessive) |
 |----------------|
