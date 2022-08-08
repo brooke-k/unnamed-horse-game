@@ -136,3 +136,20 @@ Because the official names for coats affected by dun dilution (both with and wit
 | Pearl          |
 
 **This dominance heirachy is not fully realistic, and has been adapted subjectively to better fit a digital format.*
+
+## Fades
+
+Fades are simplistic in comparison to dilutions, but are applied after dilutions as diluted coats can affect the final outcome of a fade. There are two available fade genes that can be expressed; grey and roan.
+
+Both grey and roan are dominant, however, because grey has a stronger expression in a horses coat (fading the entire coat to grey, instead of just the body like roan does), when both grey and roan are present, only grey will be expressed. Real equine coats can show a much more continuous blending of the two, especially as the horse ages, but this has been simplified in `unnamed-horse-game` for sake of digital application.
+
+Because grey and roan fading occurs as the horse ages and will not be visible at birth. Young foals are born with full colouration, and will gradually have their hairs replaced with white hairs as they age. Near-full coverage of this fading will render the horse almost completely white by 6-8 years of age. As such, both grey and roan coat names will include both the involved fade, as well as the dilution/base coat name. Any dilution/base coat color can be affected by grey and/or roan.
+
+A list of the genes and their expressions can be seen below.
+
+| `bit-13 to bit-10` | Alleles |      Fade Expressed | Coat Name |
+|--------------------|---------|----------------|-----------|
+| `0000`             | N/N-N/N |      No fade        | [base/dilution name] |
+| `001x`, `00x1`     | N/N-Rn/x |      Roan           | [base/dilution name] Roan |
+| `1x00`, `x100`     | Gr/x-N/N |      Grey           | Grey ([base/dilution name]) |
+| `1x1x`, `1xx1`, `x11x`, `x1x1` | Gr/x-Rn/x | Grey | Grey ([base/dilution name] Roan)
