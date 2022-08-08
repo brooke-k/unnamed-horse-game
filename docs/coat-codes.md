@@ -32,14 +32,25 @@ Each gene is encoded in a 2-bit sequence (representing 2 alleles), where 0 is a 
 
 Base coats serve to define the entire coat of the horse, with most dilutions (and some patterns) being affected by the base colour. It is possible for an equine to not express any patterning, in which case the base coat will serve as the only visible colour on the horse.
 
+Base coats in real horses are defined by 2 genes. These genes are the Red Factor, which controls the possibility of the horse being able to produce black pigmentation for its coat, and Agouti factor, which controls to what degree black pigment is produced.
+
+If Red factor (defined with dominant allele E and recessive allele e) is recessive, that is, the Red Factor is 'e/e', then no black pigment will be produced on the horse's coat. In this case, it does not matter what the alleles are for the Agouti factor in regards to visible expression, as it will not be visible at all. A fully recessive allele pair for Red factor will only produce a red-pigment base coat, commonly called "Chestnut".
+
+Otherwise, if at least one Red Factor allele is domanent, 'E/e' or 'E/E', then black pigment will be visible and the Agouti factor will be used.
+
+Agouti (defined with dominant allele A and recessive allele a) that is fully recessive, that is 'a/a', will cause the entire coat to produce black pigment instead of red. This complete production of black will produce the "Black" coat colour.
+Otherwise, there is at least one dominant Agouti allele, 'A/a' or 'A/A', black pigment will only replace red pigment on the nose, legs, mane, and tail. This coat pattern is commonly called "Bay".
+
+Although not a base coat, Camarillo white (recognized in real-world equine genetics as a white spotting pattern), is a dominant gene and will be expressed if at least one of its alleles is dominant. This expression causes the entire coat, including the mane and tail, to be completely white, thus concealing the other base coat colours. Since all other equine coat genes rely on lightening or diluting the base coat, they will not affect the visual appearance of Camarillo white. Because of this unique property, Camarillo white has been included in the list of encoded base coats, as it provides a coat colour that will affect every other gene's visual expression, but other genes will not affect it.
+
 Simplified encoding for base coats (using bits 0-5) is outlined below.
 
-| Simplified bits 0-5 | Expressed Base Coat |
-|---------------------|---------------------|
-| `1xxxxx, 01xxxx`      | White |
-| `0000xx` | Red |
-| `001x10, 00x110, 00x111, 001x11` | Bay |
-| `001x00, 00x100` | Black |
+| Simplified `bit-31 to bit-28`          | Simplfied expressed alleles | Expressed Base Coat |
+|----------------------------------------|-----------------------------|---------------------|
+| `1xxxxx, 01xxxx`                       | CW/x-x/x-x/x                | White               |
+| `0000xx`                               | N/N-e/e-x/x                 | Chestnut            |
+| `001x10`, `00x110`, `00x111`, `001x11` | N/N-E/x-A/x                 | Bay                 |
+| `001x00, 00x100`                       | N/N-E/x-a/a                 | Black               |
 
 ## Dilutions
 
@@ -104,14 +115,14 @@ The dominance of dun alleles is continous, instead of following the binary patte
 
 A comparison of real equine genes and the equivalent 4-bit pattern used by `unnamed-horse-game` can be found below.
 
-| Real Equine Genes  (D/nd1/nd2) | 4-Bit Rep. (bits `17-14`)     | Decimal value  | Dilution expression*               |
-|--------------------------------|-------------------------------|----------------|------------------------------------|
-| D/D                            | `1x1x`                        | 10, 11, 14, 15 | Dilution, primative markings       |
-| D/nd1                          | `1x01`, `011x`                | 6, 7, 9, 13    | Dilution, primative markings       |
-| D/nd2                          | `1x00`, `001x`                | 2, 3, 8, 12    | Dilution, primative markings       |
-| nd1/nd1                        | `0101`                        | 5              | No dilution, primative markings    |
-| nd1/nd2                        | `0100`                        | 4              | No dilution, primative markings    |
-| nd2/nd2                        | `0000`                        | 0              | No dilution, no primative markings |
+| Real Equine Genes  (D/nd1/nd2) | Simplified `bit-17 to bit-14`     | Dilution expression*               |
+|--------------------------------|-----------------------------------|------------------------------------|
+| D/D                            | `1x1x`                            | Dilution, primative markings       |
+| D/nd1                          | `1x01`, `011x`                    | Dilution, primative markings       |
+| D/nd2                          | `1x00`, `001x`                    | Dilution, primative markings       |
+| nd1/nd1                        | `0101`                            | No dilution, primative markings    |
+| nd1/nd2                        | `0100`                            | No dilution, primative markings    |
+| nd2/nd2                        | `0000`                            | No dilution, no primative markings |
 
 **Dun dilution affects both red and black hair follicles, so all base coats (except white) are affected. This dilution behaves most similarly to cream dilution with Cr/Cr dominance.*
 
