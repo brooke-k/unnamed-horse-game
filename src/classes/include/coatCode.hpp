@@ -66,8 +66,8 @@ public:
       }
       else
       {
-        this->markSet[i] = this->markSet[i];
-        this->sectionedBin.append(to_string(this->fullSet[i]));
+        this->markSet[i] = this->fullSet[i];
+        this->sectionedBin.append(to_string(this->markSet[i]));
       }
     }
     this->coatName = "Not calculated";

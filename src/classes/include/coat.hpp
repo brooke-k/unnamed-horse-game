@@ -5,14 +5,15 @@
  *
  */
 
-#include "./fadeCoat.hpp"
+#include "./whiteMarkCoat.hpp"
+
 #include <cstdlib>
 #include <ctime>
 using namespace std;
-class Coat : public FadeCoat
+class Coat : public WhiteMarkCoat
 {
 public:
-  Coat(unsigned long int code = rand()) : FadeCoat(code) { return; }
+  Coat(unsigned long int code = rand()) : WhiteMarkCoat(code) { return; }
   Coat(Coat &src)
   {
     return;
