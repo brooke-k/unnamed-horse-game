@@ -22,7 +22,7 @@ Each gene is encoded in a 2-bit sequence (representing 2 alleles), where 0 is a 
 | `13-12`     | Grey                | G/N                | Fade             |
 | `11-10`     | Roan                | Rn/N               | Fade             |
 | `9-8  `     | Leopard Complex     | LP/N               | Marking          |
-| `7-6  `     | Appaloosa Pattern-1 | PATN1/N            | Marking          |
+| `7-6  `     | Splashed White      | SW/N               | Marking          |
 | `5-4  `     | Lethal White Overo  | O/N                | Marking          |
 | `3-2  `     | Sabino1             | SB1/N              | Marking          |
 | `1-0  `     | Tobiano             | TO/N               | Marking          |
@@ -145,7 +145,7 @@ Both grey and roan are dominant, however, because grey has a stronger expression
 
 Because grey and roan fading occurs as the horse ages and will not be visible at birth. Young foals are born with full colouration, and will gradually have their hairs replaced with white hairs as they age. Near-full coverage of this fading will render the horse almost completely white by 6-8 years of age. As such, both grey and roan coat names will include both the involved fade, as well as the dilution/base coat name. Any dilution/base coat color can be affected by grey and/or roan.
 
-A list of the genes and their expressions can be seen below.
+A list of the faded coat genes and their expressions can be seen below.
 
 | `bit-13 to bit-10` | Alleles |      Fade Expressed | Coat Name |
 |--------------------|---------|----------------|-----------|
@@ -153,3 +153,26 @@ A list of the genes and their expressions can be seen below.
 | `001x`, `00x1`     | N/N-Rn/x |      Roan           | [base/dilution name] Roan |
 | `1x00`, `x100`     | Gr/x-N/N |      Grey           | Grey ([base/dilution name]) |
 | `1x1x`, `1xx1`, `x11x`, `x1x1` | Gr/x-Rn/x | Grey | Grey ([base/dilution name] Roan)
+
+## White-Patterns
+
+White patterns are the final set of coat genes encoded in the `32-bit` sequence, and are located on `bit-9` to `bit-0`. There are 5 different genes encoding for whole-body white patterns; 1 gene (Leopard complex) encods for regular coat-coloured spotting on an otherwise white coat, and 4 genes (splashed white, lethal overo, tobiano, and sabino) encoding for 'painted' white coats, with varying patterns.
+
+ Real-world white-pattern genetics are far more complex, especially the 'splashed white' gene, which has 6 different alleles in real-world equines, instead of just 2. Because of this simplifaction, there are some specific coats that `unnamed-horse-game` does not have represented. This include completely white coats due to overlapping white patterns, or highly specific descriptions of how white patterns look on a specific equine's coat. Just as no two people look the same, no two white-patterned horses look the same, and for reasonable runtimes and encoding to be possible, these aspects were implented in a simplified manner.
+
+A list of white pattern genes and their expressions can be found below.
+
+| Simplfied `bit-9` to `bit-0` | Alleles                 | White Pattern Expressed |
+|------------------------------|-------------------------|-------------------------|
+| `1xxx0xxxxx`, `x10x0xxxxx`   | LP/x-x/x-x/x-x/x-x/x    | Appaloosa               |
+| `xx1x0xxxxx`, `xxx10xxxxx`   | x/x-SW/x-x/x-x/x-x/x    | Splashed White          |
+|  `xxxx10xxxx`, `xxxx01xxxx`  | x/x-x/x-O/N-x/x-x/x     | Overo                   |
+|  `xxxx11xxxx`                | x/x-x/x-O/O-x/x-x/x     | Overo (Fatal)           |
+|  `xxxx0x1xxx`, `xxxx0xx1xx`  | x/x-x/x-x/x-SB1/x-x/x   | Sabino                  |
+|  `xxxx011xxx`                | x/x-x/x-x/x-SB1/SB1-x/x | Sabino White            |
+|  `xxxx0xxx1x`, `xxxx0xxxx1`  | x/x-x/x-x/x-TO/x-x/x    | Tobiano                 |
+
+More than one white-pattern can be present at a time, so coats where multiple patterns are visible will have different names than their single-patterned counterparts.
+
+If a coat expresses multiple non-appaloosa patterns, it will be said to have the "Paint" white pattern.
+If a coat expresses appaloosa, plus any of the non-appaloosa patterns (including "Paint") it will be called "Appaloosa-[white pattern]."
