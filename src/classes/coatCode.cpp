@@ -60,7 +60,7 @@ void CoatCode::setCoatName(string coatName)
 string CoatCode::getPrintTopBorder()
 {
   string topBorder = "\n\r\u250F";
-  for (int i = 0; i < 62; i++)
+  for (int i = 0; i < 78; i++)
   {
     topBorder.append("\u2501");
   }
@@ -71,7 +71,7 @@ string CoatCode::getPrintTopBorder()
 string CoatCode::getPrintTitleBorder()
 {
   string titleBorder = "\n\r\u2523";
-  for (int i = 0; i < 62; i++)
+  for (int i = 0; i < 78; i++)
   {
     titleBorder.append("\u2501");
   }
@@ -82,7 +82,7 @@ string CoatCode::getPrintTitleBorder()
 string CoatCode::getBottomBorder()
 {
   string bottomBorder = "\n\r\u2517";
-  for (int i = 0; i < 62; i++)
+  for (int i = 0; i < 78; i++)
   {
     bottomBorder.append("\u2501");
   }
@@ -93,7 +93,7 @@ string CoatCode::getBottomBorder()
 string CoatCode::getPrintSection()
 {
   string printSection = "\n\r\u2520";
-  for (int i = 0; i < 62; i++)
+  for (int i = 0; i < 78; i++)
   {
     printSection.append("\u2500");
   }
@@ -141,7 +141,7 @@ string CoatCode::addPrintLine(string baseString, string toPrintFirst, string toP
 
   originalString.append(printLine);
   originalString.append(toPrintSecond);
-  originalString.append("\e[64G\u2503");
+  originalString.append("\e[80G\u2503");
   return originalString;
 }
 string CoatCode::addPrintLine(string baseString, string toPrint, int indentLevel)
