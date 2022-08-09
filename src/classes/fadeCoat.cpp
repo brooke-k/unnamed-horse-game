@@ -49,7 +49,6 @@ string FadeCoat::calculateFadeCoatName(bitset<4> fdset)
   {
     return "White";
   }
-
   string fadeCoat = "";
   if (fdset[1] || fdset[0]) // check for roan
   {
@@ -57,7 +56,11 @@ string FadeCoat::calculateFadeCoatName(bitset<4> fdset)
   }
   if (fdset[3] || fdset[2]) // check for grey
   {
+
     fadeCoat = "Grey";
+    fadeCoat.append(" (");
+    fadeCoat.append(coatName);
+    fadeCoat.append(")");
   }
   else
   {
