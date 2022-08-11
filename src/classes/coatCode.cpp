@@ -8,6 +8,7 @@
 #include <string>
 #include <iostream>
 #include <bitset>
+#include <sstream>
 
 #include "./include/coatCode.hpp"
 using namespace std;
@@ -108,6 +109,13 @@ string CoatCode::codeToString()
   infostr = addPrintLine(infostr, "         \u2605 HORSE \u2605 COAT \u2605 INFO \u2605", 3);
   infostr.append(getPrintTitleBorder());
   infostr = addPrintLine(infostr, "ESSENTIAL COAT DATA");
+  stringstream inhex;
+  inhex << hex << getCodeAsULong();
+
+  string hexVal = "0x";
+  hexVal.append(inhex.str());
+  infostr = addPrintLine(infostr, "Hex code: ", hexVal, 1);
+
   infostr = addPrintLine(infostr, "Decimal code: ", to_string(code), 1);
   infostr = addPrintLine(infostr, " Binary code: ", getFullSet().to_string(), 1);
   infostr = addPrintLine(infostr, " Seg. binary: ", getSectionedBin(), 1);
