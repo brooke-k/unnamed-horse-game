@@ -30,6 +30,15 @@ public:
   {
     return;
   }
+
+  Coat &operator+=(const Coat &rhs);
+
+  Coat &operator*=(const Coat &rhs);
+
+  Coat &operator+=(const unsigned long int &bval);
+
+  friend Coat operator*(Coat &lhs, const Coat &rhs);
+
   friend ostream &operator<<(ostream &os, Coat &coat);
 
   string minPrint();
