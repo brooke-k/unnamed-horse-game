@@ -21,12 +21,15 @@ public:
   WhiteMarkCoat(unsigned long int code = (unsigned long int)0) : FadeCoat(code)
   {
     this->markCoatName = calculateMarkCoatName();
+    this->setCoatName(this->getMarkCoatName());
+
     return;
   }
 
   WhiteMarkCoat(WhiteMarkCoat &src)
   {
     this->markCoatName = calculateMarkCoatName();
+    this->setCoatName(this->getMarkCoatName());
   }
 
   WhiteMarkCoat &operator=(const WhiteMarkCoat *src)
@@ -36,6 +39,8 @@ public:
       return *this;
     }
     this->markCoatName = calculateMarkCoatName(src->getMarkSet());
+    this->setCoatName(this->getMarkCoatName());
+
     return *this;
   }
 
@@ -44,6 +49,7 @@ public:
   string calculateMarkCoatName();
   string calculateMarkCoatName(bitset<10> mset);
   string getMarkAlleles();
+  void setMarkCoatName(string markCoatName);
 
   string getMarkCoatName();
 

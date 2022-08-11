@@ -20,11 +20,14 @@ public:
   FadeCoat(unsigned long int code = (unsigned long int)0) : DilutionCoat(code)
   {
     this->fadeCoatName = calculateFadeCoatName();
+    this->setCoatName(this->getFadeCoatName());
+
     return;
   }
   FadeCoat(FadeCoat &src)
   {
     this->fadeCoatName = calculateFadeCoatName();
+    this->setCoatName(this->getFadeCoatName());
   }
   FadeCoat &operator=(const FadeCoat *src)
   {
@@ -33,6 +36,8 @@ public:
       return *this;
     }
     this->fadeCoatName = calculateFadeCoatName(src->getFadeSet());
+    this->setCoatName(this->getFadeCoatName());
+
     return *this;
   }
 

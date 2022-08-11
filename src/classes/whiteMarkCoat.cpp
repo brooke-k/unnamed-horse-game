@@ -12,6 +12,12 @@
 
 using namespace std;
 
+void WhiteMarkCoat::setMarkCoatName(string markCoatName)
+{
+  this->markCoatName = markCoatName;
+  this->setCoatName(markCoatName);
+}
+
 string WhiteMarkCoat::calculateMarkCoatName(bitset<10> mset)
 {
   int paintCount = 0;

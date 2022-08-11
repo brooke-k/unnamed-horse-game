@@ -23,11 +23,14 @@ public:
   BaseCoat(unsigned long int code = (unsigned long int)0) : CoatCode(code)
   {
     this->baseCoatName = calculateBaseCoatName();
+    this->setCoatName(this->getBaseCoatName());
   }
 
   BaseCoat(BaseCoat &src)
   {
     this->baseCoatName = calculateBaseCoatName();
+    this->setCoatName(this->getBaseCoatName());
+
     return;
   }
 
@@ -38,6 +41,8 @@ public:
       return *this;
     }
     this->baseCoatName = calculateBaseCoatName();
+    this->setCoatName(this->getBaseCoatName());
+
     return *this;
   }
   virtual ~BaseCoat() { return; }

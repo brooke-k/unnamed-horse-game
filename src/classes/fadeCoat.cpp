@@ -20,6 +20,7 @@ string FadeCoat::getFadeCoatName() const
 void FadeCoat::setFadeCoatName(string fadeCoatName)
 {
   this->fadeCoatName = fadeCoatName;
+  this->setCoatName(fadeCoatName);
 }
 
 string FadeCoat::fadeToString()
