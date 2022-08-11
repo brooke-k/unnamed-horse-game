@@ -10,6 +10,10 @@
 #include <string>
 #include <bitset>
 #include <sstream>
+#include <iomanip>
+#include <cstdlib>
+#include <ctime>
+#include <random>
 
 string Coat::minPrint()
 {

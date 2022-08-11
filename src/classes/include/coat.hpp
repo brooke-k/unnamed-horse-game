@@ -16,6 +16,8 @@ public:
   Coat(unsigned long int code = rand()) : WhiteMarkCoat(code) { return; }
   Coat(Coat &src)
   {
+    *this = src;
+
     return;
   }
   Coat &operator=(const Coat *src)
@@ -26,6 +28,7 @@ public:
     }
     return *this;
   }
+
   ~Coat()
   {
     return;
@@ -40,6 +43,8 @@ public:
   friend Coat operator*(Coat &lhs, const Coat &rhs);
 
   friend ostream &operator<<(ostream &os, Coat &coat);
+
+  friend Coat &operator+(Coat &lhs, const Coat &rhs);
 
   string minPrint();
 };
