@@ -8,6 +8,7 @@
 #include <string>
 #include <iostream>
 #include <bitset>
+#include "../enum/presetCoats.hpp"
 
 using namespace std;
 
@@ -72,16 +73,17 @@ public:
     }
     this->coatName = "Not calculated";
   }
+
   CoatCode(CoatCode &src)
   {
     if (&src != this)
     {
       this->code = src.code;
-      this->fullSet = bitset<32>(src.code);
-      this->baseSet = bitset<6>(src.baseSet);
-      this->diluteSet = bitset<12>(src.diluteSet);
-      this->fadeSet = bitset<4>(src.fadeSet);
-      this->markSet = bitset<10>(src.markSet);
+      this->fullSet = src.code;
+      this->baseSet = src.baseSet;
+      this->diluteSet = src.diluteSet;
+      this->fadeSet = src.fadeSet;
+      this->markSet = src.markSet;
       this->sectionedBin = src.sectionedBin;
       this->coatName = src.coatName;
     }
@@ -94,11 +96,11 @@ public:
       return *this;
     }
     this->code = src->code;
-    this->fullSet = bitset<32>(src->code);
-    this->baseSet = bitset<6>(src->baseSet);
-    this->diluteSet = bitset<12>(src->diluteSet);
-    this->fadeSet = bitset<4>(src->fadeSet);
-    this->markSet = bitset<10>(src->markSet);
+    this->fullSet = src->code;
+    this->baseSet = src->baseSet;
+    this->diluteSet = src->diluteSet;
+    this->fadeSet = src->fadeSet;
+    this->markSet = src->markSet;
     this->sectionedBin = src->sectionedBin;
     this->coatName = src->coatName;
     return *this;
