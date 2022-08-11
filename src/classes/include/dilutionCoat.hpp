@@ -27,11 +27,13 @@ public:
   DilutionCoat(unsigned long int code = (unsigned long int)0) : BaseCoat(code)
   {
     this->dilutionCoatName = calculateDilutionCoatName();
+    this->setCoatName(this->getDilutionCoatName());
     return;
   }
   DilutionCoat(DilutionCoat &src)
   {
     this->dilutionCoatName = calculateDilutionCoatName(src.getBaseSet(), src.getDiluteSet());
+    this->setCoatName(this->getDilutionCoatName());
     return;
   }
   DilutionCoat &operator=(const DilutionCoat *src)
@@ -41,6 +43,7 @@ public:
       return *this;
     }
     this->dilutionCoatName = calculateDilutionCoatName(src->getBaseSet(), src->getDiluteSet());
+    this->setCoatName(this->getDilutionCoatName());
     return *this;
   }
   virtual ~DilutionCoat()
@@ -59,7 +62,7 @@ public:
   getDilutionsList();
   bool hasDilutions();
   string getDiluteAlleles();
-  bool hasPrimitiveMarkings();
+  bool hasWildMarkings();
   friend ostream &operator<<(ostream &os, DilutionCoat &dl);
 
   string calculateDilutionCoatName();

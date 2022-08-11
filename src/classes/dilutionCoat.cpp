@@ -106,6 +106,7 @@ string DilutionCoat::diluteToString()
 void DilutionCoat::setDilutionCoatName(string dilutionCoatName)
 {
   this->dilutionCoatName = dilutionCoatName;
+  this->setCoatName(dilutionCoatName);
 }
 
 void DilutionCoat::calculateDilutions()
@@ -292,7 +293,7 @@ string DilutionCoat::calculateDunPresence(bitset<12> dset, string &dilutionCoat)
   string tempCoat = dilutionCoat;
   if (dset[3] || dset[1]) // D/D, D/nd1, D/nd2 genotype
   {
-    dilutionCoat.assign("Primitive ");
+    dilutionCoat.assign("Wild ");
     dilutionCoat.append(tempCoat);
     dilutionCoat.append(" Dun");
     return dilutionCoat;
@@ -303,7 +304,7 @@ string DilutionCoat::calculateDunPresence(bitset<12> dset, string &dilutionCoat)
   }
   else // nd2/nd1
   {
-    dilutionCoat.assign("Primitive ");
+    dilutionCoat.assign("Wild ");
     dilutionCoat.append(tempCoat);
     return dilutionCoat;
   }
