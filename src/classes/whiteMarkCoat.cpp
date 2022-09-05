@@ -100,7 +100,30 @@ string WhiteMarkCoat::calculateMarkCoatName()
 
 string WhiteMarkCoat::getMarkAlleles()
 {
-  return "getMarkAllelesNotImplemented";
+  string temp[] = {"G", "Rn", "LP", "SW", "O", "SB1", "TO"};
+  string alleles = "";
+  bitset<10> mset = this->getMarkSet();
+  for (int i = 0; i < 10; i++)
+  {
+    if ((mset[9 - i]))
+    {
+      alleles.append(temp[i / 2]);
+    }
+    else
+    {
+      alleles.append("N");
+    }
+    if (i % 2 == 0)
+    {
+      alleles.append("/");
+    }
+    else if (i != 9)
+    {
+      alleles.append("-");
+    }
+  }
+
+  return alleles;
 }
 
 string WhiteMarkCoat::markToString()
