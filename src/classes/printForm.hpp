@@ -63,6 +63,7 @@ void addLine(string &baseString, int indentLevel, string addString1, string addS
 //   return;
 // }
 
-using namespace std;
-
+#ifndef PRINTFORM
+#define PRINTFORM
 void addLine(string &baseString, int indentLevel = 0, string addString1 = "", string addString2 = "");
+#endif // PRINTFORM
