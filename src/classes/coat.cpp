@@ -40,6 +40,14 @@ string Coat::minPrint()
   return printString;
 }
 
+void Coat::fullPrint()
+{
+  string printString = "";
+
+  cout
+      << "fullPrint() not yet implemented.";
+}
+
 Coat &Coat::operator+=(const Coat &rhs)
 {
   bitset<32> orBits = (this->getFullSet() | rhs.getFullSet());
@@ -64,12 +72,7 @@ Coat &Coat::operator+=(const unsigned long int &bval)
 
 ostream &operator<<(ostream &os, Coat &coat)
 {
-  os << endl;
-  os << "Hex Code: 0x" << setfill('0') << setw(8) << right << hex << coat.getFullSet().to_ulong() << endl;
-  os << "Coat Name: " << coat.getCoatName() << endl;
-  os << "Bin Code: " << coat.getFullSet().to_string() << endl;
-  os << endl;
-  os.unsetf(ios_base::basefield);
+  os << coat.getCoatName() << endl;
   return os;
 }
 

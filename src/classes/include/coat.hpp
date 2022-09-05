@@ -6,7 +6,6 @@
  */
 
 #include "./whiteMarkCoat.hpp"
-
 #include <cstdlib>
 #include <ctime>
 using namespace std;
@@ -47,4 +46,5 @@ public:
   friend Coat &operator+(Coat &lhs, const Coat &rhs);
 
   string minPrint();
+  void fullPrint();
 };
