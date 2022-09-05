@@ -10,7 +10,7 @@
 #include <bitset>
 #include <sstream>
 
-#include "./include/coatCode.hpp"
+#include "../include/coats/coatCode.hpp"
 using namespace std;
 
 // Operator Overloads

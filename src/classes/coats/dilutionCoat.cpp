@@ -5,7 +5,7 @@
  *
  */
 
-#include "./include/dilutionCoat.hpp"
+#include "../include/coats/dilutionCoat.hpp"
 #include <iostream>
 #include <bitset>
 #include <string>

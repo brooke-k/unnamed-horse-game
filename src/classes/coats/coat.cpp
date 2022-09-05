@@ -5,7 +5,7 @@
  *
  */
 
-#include "./include/coat.hpp"
+#include "../include/coats/coat.hpp"
 #include <iostream>
 #include <string>
 #include <bitset>

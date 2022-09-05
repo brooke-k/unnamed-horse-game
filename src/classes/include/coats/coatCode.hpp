@@ -8,7 +8,7 @@
 #include <string>
 #include <iostream>
 #include <bitset>
-#include "../enum/presetCoats.hpp"
+#include "./enums/presetCoats.hpp"
 
 using namespace std;
 

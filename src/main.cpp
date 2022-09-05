@@ -9,7 +9,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <bitset>
-#include "./classes/include/coat.hpp"
+#include "./classes/include/coats/coat.hpp"
 
 using namespace std;
 

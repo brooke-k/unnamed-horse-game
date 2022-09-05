@@ -5,7 +5,7 @@
  *
  */
 
-#include "./include/whiteMarkCoat.hpp"
+#include "../include/coats/whiteMarkCoat.hpp"
 #include <ostream>
 #include <string>
 #include <bitset>
