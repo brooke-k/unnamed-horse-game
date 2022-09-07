@@ -5,7 +5,7 @@
  *
  */
 
-#include "../include/coats/fadeCoat.hpp"
+#include "./include/coats/fadeCoat.hpp"
 #include <bitset>
 #include <string>
 #include <iostream>

@@ -46,5 +46,4 @@ public:
   friend Coat &operator+(Coat &lhs, const Coat &rhs);
 
   string minPrint();
-  void fullPrint();
 };

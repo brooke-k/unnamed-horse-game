@@ -9,7 +9,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <bitset>
-#include "./classes/include/coats/coat.hpp"
+#include "./classes/include/equines/equid.hpp"
 
 using namespace std;
 
@@ -20,10 +20,11 @@ int main(void)
   srand(time(NULL));
   // unsigned long int randVal = rand();
 
-  FadeCoat testBase(rand());
+  Coat c(rand());
   // testBase.minPrint();
-  cout << testBase << endl;
-  cout << "END" << endl;
+  c.fullPrint();
+  cout
+      << "END" << endl;
 
   return 0;
 }

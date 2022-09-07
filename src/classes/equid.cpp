@@ -5,8 +5,11 @@
  *
  */
 
-#include "../include/equines/equid.hpp"
-#include "../printForm.hpp"
+#include "./include/equines/equid.hpp"
+#ifndef PRINTFORM
+#define PRINTFORM
+#include "./include/utilities/printForm.hpp"
+#endif // PRINTFORM
 #include <string>
 #include <iostream>
 
