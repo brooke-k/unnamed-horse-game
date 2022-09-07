@@ -6,6 +6,10 @@
  */
 
 #include "./include/coats/fadeCoat.hpp"
+#ifndef PRINTFORM
+#define PRINTFORM
+#include "./include/utilities/printForm.hpp"
+#endif // PRINTFORM
 #include <bitset>
 #include <string>
 #include <iostream>
@@ -23,6 +27,7 @@ void FadeCoat::setFadeCoatName(string fadeCoatName)
   this->setCoatName(fadeCoatName);
 }
 
+/** BNOTE deprecated to be removed */
 string FadeCoat::fadeToString()
 {
   string infostr = diluteToString();
@@ -36,8 +41,7 @@ string FadeCoat::fadeToString()
 
 ostream &operator<<(ostream &os, FadeCoat &fc)
 {
-  os << fc.fadeToString();
-  os << fc.getBottomBorder() << endl;
+  os << fc.getFadeCoatName() << endl;
   return os;
 }
 
@@ -106,4 +110,40 @@ string FadeCoat::getFadeAlleles()
     }
   }
   return alleleString;
+}
+
+void FadeCoat::fullPrint()
+{
+  printTopBorder();
+  printFormLine("COAT CODE DATA", "", 3);
+  printThickInnerBorder();
+  printFormLine("ESSENTIAL VALUES", "", 0);
+  bitset<32> tempCode = getFullSet();
+  printFormLine("Coat name: ", getCoatName(), 1);
+  printFormLine("Binary value: ", getSectionedBin(), 1);
+  stringstream inhex;
+  inhex << hex << getCodeAsULong();
+  printFormLine("Hexadecimal value: 0x", inhex.str(), 1);
+  printInnerBorder();
+  printFormLine("SEGMENTED DATA: ", "", 0);
+  printFormLine("Base coat bin.: ", getBaseSet().to_string(), 1);
+  inhex << hex << getBaseSet().to_ullong();
+  printFormLine("Base coat hex.: 0x", inhex.str(), 1);
+  printFormLine("Base coat colour: ", getBaseCoatName(), 1);
+  printFormLine("", "");
+  printFormLine("Dilution coat bin.: ", getDiluteSet().to_string(), 1);
+  printFormLine("Dilution coat colour: ", getDilutionCoatName(), 1);
+  inhex << hex << getDiluteSet().to_ullong();
+  printFormLine("Dilution coat hex.: 0x", inhex.str(), 1);
+  printFormLine("", "");
+  printFormLine("Fade coat bin.: ", getFadeSet().to_string(), 1);
+  inhex << hex << getFadeSet().to_ullong();
+  printFormLine("Fade coat hex.: 0x", inhex.str(), 1);
+  printFormLine("Fade coat colour: ", getFadeCoatName(), 1);
+  printFormLine("", "");
+  printFormLine("White marking bin.: ", getMarkSet().to_string(), 1);
+  inhex << hex << getMarkSet().to_ullong();
+  printFormLine("White marking hex.: 0x", inhex.str(), 1);
+  printFormLine("White marking coat: ", "Undefined", 1);
+  printBottomBorder();
 }

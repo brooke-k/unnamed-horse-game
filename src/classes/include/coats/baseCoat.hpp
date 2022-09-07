@@ -60,5 +60,7 @@ public:
   string calculateBaseCoatName(bitset<6> bset);
   string calculateBaseCoatName(unsigned long int bcode);
 
+  virtual void fullPrint();
+
   friend ostream &operator<<(ostream &os, BaseCoat &bc);
 };

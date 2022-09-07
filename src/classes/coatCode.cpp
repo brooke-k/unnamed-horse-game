@@ -229,6 +229,6 @@ void CoatCode::fullPrint()
   printFormLine("White marking bin.: ", getMarkSet().to_string(), 1);
   inhex << hex << getMarkSet().to_ullong();
   printFormLine("White marking hex.: 0x", inhex.str(), 1);
-  printFormLine("White marking coat colour: ", "Undefined", 1);
+  printFormLine("White marking coat: ", "Undefined", 1);
   printBottomBorder();
 }

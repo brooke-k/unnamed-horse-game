@@ -51,6 +51,7 @@ public:
   string getMarkAlleles();
   void setMarkCoatName(string markCoatName);
 
+  virtual void fullPrint();
   string getMarkCoatName();
 
   friend ostream &

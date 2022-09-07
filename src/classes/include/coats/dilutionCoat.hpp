@@ -69,5 +69,7 @@ public:
   string calculateDilutionCoatName(bitset<6> bset, bitset<12> dset);
   string calculateDilutionCoatName(bitset<32> fset);
 
+  virtual void fullPrint();
+
   string calculateDilutionCoatName(unsigned long int dcode);
 };

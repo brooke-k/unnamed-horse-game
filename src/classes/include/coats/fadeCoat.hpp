@@ -50,6 +50,8 @@ public:
   string calculateFadeCoatName(bitset<4> fdset);
   string getFadeAlleles();
 
+  virtual void fullPrint();
+
   friend ostream &
   operator<<(ostream &os, FadeCoat &fc);
 };
