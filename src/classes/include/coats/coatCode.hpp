@@ -117,6 +117,8 @@ public:
   string getCoatName() const;
   void setCoatName(string coatName);
 
+  virtual void fullPrint();
+
   string getPrintTitleBorder();
   string getPrintTopBorder();
   string getPrintSection();
