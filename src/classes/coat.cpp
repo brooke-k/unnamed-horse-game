@@ -114,3 +114,36 @@ Coat &Coat::operator*=(const Coat &rhs)
   *this = Coat(resultBits.to_ulong());
   return *this;
 }
+
+void Coat::fullPrint()
+{
+  printTopBorder();
+  printFormLine("           COAT CODE DATA", "", 3);
+  printThickInnerBorder();
+  printFormLine("ESSENTIAL VALUES", "", 0);
+  bitset<32> tempCode = getFullSet();
+  printFormLine("Coat name: ", getCoatName(), 1);
+  printFormLine("Binary value: ", getSectionedBin(), 1);
+  stringstream inhex;
+  inhex << hex << getCodeAsULong();
+  printFormLine("Hexadecimal value: 0x", inhex.str(), 1);
+  printInnerBorder();
+  printFormLine("SEGMENTED DATA: ", "", 0);
+  printFormLine("Base coat bin.: ", getBaseSet().to_string(), 1);
+  printFormLine("Base coat alleles: ", getBaseAlleles(), 1);
+  printFormLine("Base coat colour: ", getBaseCoatName(), 1);
+  printFormLine("", "");
+  printFormLine("Dilution coat bin.: ", getDiluteSet().to_string(), 1);
+  printFormLine("Dilution coat colour: ", getDilutionCoatName(), 1);
+  printFormLine("Dilution coat alleles: ", getDiluteAlleles(), 1);
+  printFormLine("", "");
+
+  printFormLine("Fade coat bin.: ", getFadeSet().to_string(), 1);
+  printFormLine("Fade coat alleles: ", getFadeAlleles(), 1);
+  printFormLine("Fade coat colour: ", getFadeCoatName(), 1);
+  printFormLine("", "");
+  printFormLine("White marking bin.: ", getMarkSet().to_string(), 1);
+  printFormLine("White marking alleles: ", getMarkAlleles(), 1);
+  printFormLine("White marking coat: ", getMarkCoatName(), 1);
+  printBottomBorder();
+}

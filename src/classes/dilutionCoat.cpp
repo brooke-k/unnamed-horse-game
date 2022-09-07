@@ -317,7 +317,7 @@ string DilutionCoat::calculateDunPresence(bitset<12> dset, string &dilutionCoat)
 void DilutionCoat::fullPrint()
 {
   printTopBorder();
-  printFormLine("COAT CODE DATA", "", 3);
+  printFormLine("           COAT CODE DATA: Dilution Coat", "", 3);
   printThickInnerBorder();
   printFormLine("ESSENTIAL VALUES", "", 0);
   bitset<32> tempCode = getFullSet();
@@ -329,23 +329,20 @@ void DilutionCoat::fullPrint()
   printInnerBorder();
   printFormLine("SEGMENTED DATA: ", "", 0);
   printFormLine("Base coat bin.: ", getBaseSet().to_string(), 1);
-  inhex << hex << getBaseSet().to_ullong();
-  printFormLine("Base coat hex.: 0x", inhex.str(), 1);
+  printFormLine("Base coat alleles: ", getBaseAlleles(), 1);
   printFormLine("Base coat colour: ", getBaseCoatName(), 1);
   printFormLine("", "");
   printFormLine("Dilution coat bin.: ", getDiluteSet().to_string(), 1);
   printFormLine("Dilution coat colour: ", getDilutionCoatName(), 1);
-  inhex << hex << getDiluteSet().to_ullong();
-  printFormLine("Dilution coat hex.: 0x", inhex.str(), 1);
+  printFormLine("Dilution coat alleles: ", getDiluteAlleles(), 1);
   printFormLine("", "");
+
   printFormLine("Fade coat bin.: ", getFadeSet().to_string(), 1);
-  inhex << hex << getFadeSet().to_ullong();
-  printFormLine("Fade coat hex.: 0x", inhex.str(), 1);
+  printFormLine("Fade coat alleles: ", "Undefined", 1);
   printFormLine("Fade coat colour: ", "Undefined", 1);
   printFormLine("", "");
   printFormLine("White marking bin.: ", getMarkSet().to_string(), 1);
-  inhex << hex << getMarkSet().to_ullong();
-  printFormLine("White marking hex.: 0x", inhex.str(), 1);
+  printFormLine("White marking alleles: ", "Undefined", 1);
   printFormLine("White marking coat: ", "Undefined", 1);
   printBottomBorder();
 }
