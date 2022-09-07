@@ -1,9 +1,14 @@
 /**
- * @file printForm.hpp
+ * @file printForm.cpp
  * @author Brooke Kindleman (brooke.kindleman@gmail.com) @brooke-k
- * @date 05/Sep/2022
+ * @date 07/Sep/2022
  *
  */
+
+#ifndef PRINTFORM
+#define PRINTFORM
+#include "./include/utilities/printForm.hpp"
+#endif // PRINTFORM
 
 #include <iostream>
 #include <bitset>
@@ -47,6 +52,14 @@ string addLine(string &baseString, int indentLevel, string addString1, string ad
   string copyString = baseString;
 
   return copyString;
+}
+
+void printFormLine(string string1, string string2, int indentLevel)
+{
+  string emptString = "";
+  string toPrint = addLine(emptString, indentLevel, string1, string2);
+  cout << toPrint;
+  return;
 }
 
 string getTopBorder()
@@ -112,16 +125,3 @@ void printBottomBorder()
 {
   cout << getBottomBorder();
 }
-
-#ifndef PRINTFORM
-#define PRINTFORM
-string addLine(string &baseString, int indentLevel = 0, string addString1 = "", string addString2 = "");
-string getTopBorder();
-string getInnerBorder();
-string getThickInnerBorder();
-string getBottomBorder();
-void printTopBorder();
-void printInnerBorder();
-void printThickInnerBorder();
-void printBottomBorder();
-#endif // PRINTFORM
