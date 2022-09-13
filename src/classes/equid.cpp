@@ -118,6 +118,7 @@ void Equid::setCoat(unsigned long int coatCode)
 
 void Equid::createCustomEquid()
 {
+  clearFullScreen();
   int inputVal = 0;
   cout << "|----------- CREATE CUSTOM EQUID --------|" << endl;
   cout << "Current Equid: " << endl;
@@ -225,6 +226,11 @@ void Equid::chooseBaseCoat()
 
 void Equid::modifyDilutions()
 {
+  clearFullScreen();
+  printTopBorder();
+  printFormLine("MODIFY DILUTIONS", "", 2);
+  printBottomBorder();
+  gotoLine(6);
   int inputVal;
   while (true)
   {
@@ -233,14 +239,14 @@ void Equid::modifyDilutions()
     cout << "    2. Remove dilution(s)" << endl;
     cout << "    3. Cancel modifications" << endl;
     cout << endl;
-    cout << "Enter selection: " << endl;
-    cin >> inputVal;
-    cout << endl;
+    inputVal = getIntSelect();
 
     if (inputVal > 3 || inputVal < 1)
     {
       cout << "Sorry, that input was not understood. Please enter one of the available options. " << endl;
       cout << endl;
+      modifyDilutions();
+      break;
     }
     else
     {
@@ -264,7 +270,13 @@ void Equid::modifyDilutions()
 
 void Equid::addDilution()
 {
+  clearFullScreen();
+  printTopBorder();
+  printFormLine("MODIFY DILUTIONS: ADD DILUTIONS", "", 2);
+  printBottomBorder();
+  gotoLine(6);
   int inputVal = 0;
+  string chosenDilute = "?";
 
   while (true)
   {
@@ -282,9 +294,7 @@ void Equid::addDilution()
     cout << "    11. Wild dun" << endl;
     cout << "    12. Wild markings" << endl;
     cout << endl;
-    cout << "Please select a dilution to add: ";
-    cin >> inputVal;
-    cout << endl;
+    inputVal = getIntSelect();
     if (inputVal > 12 || inputVal < 0)
     {
       cout << "Sorry, that selection could not be understood. Please enter a value from the list provided." << endl;
@@ -292,47 +302,66 @@ void Equid::addDilution()
     }
     else
     {
-      Coat tempCoat = this->getCoat();
+      Coat removalVal = this->getCoat();
       switch (inputVal)
       {
       case 1:
-        tempCoat += singleCream;
+        removalVal += singleCream;
+        chosenDilute = "\"single cream\"";
         break;
       case 2:
-        tempCoat += doubleCream;
+        removalVal += doubleCream;
+        chosenDilute = "\"double cream\"";
         break;
       case 3:
-        tempCoat += champagne;
+        removalVal += champagne;
+        chosenDilute = "\"champagne\"";
         break;
       case 4:
-        tempCoat += doubleChampagne;
+        removalVal += doubleChampagne;
+        chosenDilute = "\"double champagne\"";
         break;
       case 5:
-        tempCoat += heterPearl;
+        removalVal += heterPearl;
+        chosenDilute = "\"single pearl\"";
+
         break;
       case 6:
-        tempCoat += homoPearl;
+        removalVal += homoPearl;
+        chosenDilute = "\"double pearl\"";
+
         break;
       case 7:
-        tempCoat += pseudoPearl;
+        removalVal += pseudoPearl;
+        chosenDilute = "\"pseudo pearl\"";
+
         break;
       case 8:
-        tempCoat += heterSilver;
+        removalVal += heterSilver;
+        chosenDilute = "\"single silver\"";
+
         break;
       case 9:
-        tempCoat += homoSilver;
+        removalVal += homoSilver;
+        chosenDilute = "\"double silver\"";
         break;
       case 10:
-        tempCoat += wildDun;
+        removalVal += wildDun;
+        chosenDilute = "\"wild dun\"";
+
         break;
       case 11:
-        tempCoat += wild;
+        removalVal += wild;
+        chosenDilute = "\"wild\"";
+
         break;
       case 0:
         break;
       }
-      this->setCoat(tempCoat);
-      cout << "Dilution added." << endl;
+      this->setCoat(removalVal);
+      gotoLine(6);
+      clearRestofScreen();
+      cout << "Dilution " << chosenDilute << " added." << endl;
       cout << "Current diluted coat is \"" << this->getCoat().getDilutionCoatName() << "\"" << endl;
       cout << "Current overall coat is: " << this->getCoatName() << endl;
       cout << endl;
@@ -370,6 +399,11 @@ void Equid::addDilution()
 
 void Equid::removeDilution()
 {
+  clearFullScreen();
+  printTopBorder();
+  printFormLine("MODIFY DILUTIONS: REMOVE DILUTIONS", "", 2);
+  printBottomBorder();
+  gotoLine(6);
   int inputVal = 0;
 
   while (true)
@@ -391,10 +425,12 @@ void Equid::removeDilution()
     cout << "Please select a dilution to remove: ";
     cin >> inputVal;
     cout << endl;
+    string chosenDilute = "?";
     if (inputVal > 12 || inputVal < 0)
     {
       cout << "Sorry, that selection could not be understood. Please enter a value from the list provided." << endl;
-      cout << endl;
+      this->removeDilution();
+      break;
     }
     else
     {
@@ -405,62 +441,64 @@ void Equid::removeDilution()
       {
       case 1:
         removalVal += singleCream;
+        chosenDilute = "\"single cream\"";
         break;
       case 2:
         removalVal += doubleCream;
+        chosenDilute = "\"double cream\"";
         break;
       case 3:
         removalVal += champagne;
+        chosenDilute = "\"champagne\"";
         break;
       case 4:
         removalVal += doubleChampagne;
+        chosenDilute = "\"double champagne\"";
         break;
       case 5:
         removalVal += heterPearl;
+        chosenDilute = "\"single pearl\"";
+
         break;
       case 6:
         removalVal += homoPearl;
+        chosenDilute = "\"double pearl\"";
+
         break;
       case 7:
         removalVal += pseudoPearl;
+        chosenDilute = "\"pseudo pearl\"";
+
         break;
       case 8:
         removalVal += heterSilver;
+        chosenDilute = "\"single silver\"";
+
         break;
       case 9:
         removalVal += homoSilver;
+        chosenDilute = "\"double silver\"";
         break;
       case 10:
         removalVal += wildDun;
+        chosenDilute = "\"wild dun\"";
+
         break;
       case 11:
         removalVal += wild;
+        chosenDilute = "\"wild\"";
+
         break;
       case 0:
         break;
       }
-      bitset<32> removeDilute(removalVal);
-      bool dilutePresent = false;
-      for (int i = 25; i > 13; i--)
-      {
-        if (removeDilute[i])
-        {
-          if (tempCode[i])
-          {
-            dilutePresent = true;
-          }
-          tempCode[i] = 0;
-        }
-      }
-      this->setCoat(tempCode.to_ulong());
-      if (dilutePresent)
-      {
-        cout << "Dilution removed." << endl;
-      }
-      else
-      {
-        cout << "Dilution was not present in the current coat." << endl;
-      }
+      Coat tempCoat = this->getCoat();
+      tempCoat -= removalVal;
+      this->setCoat(tempCoat);
+      gotoLine(6);
+      clearRestofScreen();
+      cout << "Dilution " << chosenDilute << " removed." << endl;
+      cout << endl;
 
       cout << "Current diluted coat is \"" << this->getCoat().getDilutionCoatName() << "\"" << endl;
       cout << "Current overall coat is: " << this->getCoatName() << endl;
