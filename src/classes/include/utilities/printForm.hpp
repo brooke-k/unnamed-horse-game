@@ -29,3 +29,5 @@ void clearFullLine();
 void clearRestOfLine();
 void gotoColumn(int colFromLeft);
 int getIntSelect();
+
+void pressEnterToCont();

@@ -13,6 +13,7 @@
 #include <iostream>
 #include <bitset>
 #include <string>
+#include <limits>
 
 using namespace std;
 
@@ -174,6 +175,28 @@ int getIntSelect()
 {
   int readVal = 0;
   cout << "Enter selection: ";
-  cin >> readVal;
+  string gotLine;
+  cin.clear();
+  getline(cin, gotLine);
+
+  cout << "TEST: gotline=\"" << gotLine << "\"" << endl;
+
+  if (gotLine.size() < 1)
+  {
+    readVal = 0;
+  }
+  else
+  {
+    readVal = stoi(gotLine);
+  }
   return readVal;
+}
+
+void pressEnterToCont()
+{
+  cout << "Press ENTER to continue...";
+  cin.clear();
+  cin.get();
+  cin.clear();
+  return;
 }
