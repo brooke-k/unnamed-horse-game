@@ -22,11 +22,17 @@ private:
   Coat coat;
 
   void modifyDilutions();
+  void modifyFades();
+  void modifyWhiteMarks();
 
 protected:
+  void chooseBaseCoat();
   void addDilution();
   void removeDilution();
-  void chooseBaseCoat();
+  void addFade();
+  void removeFade();
+  void addWhiteMarks();
+  void removeWhiteMarks();
 
 public:
   Equid(string barnName = "Unknown", string fullName = "Unknown", unsigned long int coatCode = chestnut, char sex = 'X', float height = 0, int age = 0)

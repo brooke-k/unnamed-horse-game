@@ -10,21 +10,49 @@
 #include <ctime>
 #include <bitset>
 #include "./classes/include/equines/equid.hpp"
+#ifndef PRINTFORM
+#define PRINTFORM
+#include "./classes/include/utilities/printForm.hpp"
+#endif // PRINTFORM
 
 using namespace std;
 
+void startUpMessages();
+
 int main(void)
 {
-  bitset<32> maxCalc(0);
-  maxCalc.set();
-  srand(time(NULL));
-  // unsigned long int randVal = rand();
+  startUpMessages();
+  // bitset<32> manusetA(0);
+  // bitset<32> manusetB(0);
+  // manusetA[1] = 1;
+  // manusetB[1] = 1;
+  // manusetB[0] = 1;
+  // // manusetB[14] = 1;
+  // // manusetB[18] = 1;
+  // srand(time(NULL));
+  // // unsigned long int randVal = rand();
 
-  Coat c(rand());
-  // testBase.minPrint();
-  c.fullPrint();
-  cout
-      << "END" << endl;
+  // Coat cA(manusetA.to_ulong());
+  // Coat cB(manusetB.to_ulong());
+  // // testBase.minPrint();
+  // cA.fullPrint();
+  // cB.fullPrint();
+
+  Equid EEE("Cabbage", "Garden Friend", chestnut ^ sabino, 'G', 15.3, 9);
+
+  while (true)
+  {
+    EEE.createCustomEquid();
+  }
 
   return 0;
+}
+
+void startUpMessages()
+{
+  printTopBorder();
+  printFormLine("UNNAMED HORSE GAME", "", 1);
+  printFormLine("Welcome!", "", 2);
+  printBottomBorder();
+  return;
 }
