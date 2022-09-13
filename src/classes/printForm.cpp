@@ -65,7 +65,7 @@ void printFormLine(string string1, string string2, int indentLevel)
 string getTopBorder()
 {
   string topBorder = "\n\r\u250F";
-  for (int i = 0; i < 80; i++)
+  for (int i = 0; i < 79; i++)
   {
     topBorder.append("\e[1D\e[1C\u2501");
   }
@@ -76,7 +76,7 @@ string getTopBorder()
 string getInnerBorder()
 {
   string innerBorder = "\n\r\u2520";
-  for (int i = 0; i < 80; i++)
+  for (int i = 0; i < 79; i++)
   {
     innerBorder.append("\e[1D\e[1C\u2500");
   }
@@ -87,7 +87,7 @@ string getInnerBorder()
 string getThickInnerBorder()
 {
   string innerBorder = "\n\r\u2523";
-  for (int i = 0; i < 80; i++)
+  for (int i = 0; i < 79; i++)
   {
     innerBorder.append("\e[1D\e[1C\u2501");
   }
@@ -98,7 +98,7 @@ string getThickInnerBorder()
 string getBottomBorder()
 {
   string bottomBorder = "\n\r\u2517";
-  for (int i = 0; i < 80; i++)
+  for (int i = 0; i < 79; i++)
   {
     bottomBorder.append("\e[1D\e[1C\u2501");
   }
