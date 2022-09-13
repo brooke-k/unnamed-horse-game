@@ -38,6 +38,7 @@ public:
   Coat &operator*=(const Coat &rhs);
 
   Coat &operator+=(const unsigned long int &bval);
+  Coat &operator-=(const unsigned long int &bval);
 
   friend Coat operator*(Coat &lhs, const Coat &rhs);
 

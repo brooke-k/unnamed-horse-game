@@ -40,6 +40,15 @@ Coat &Coat::operator+=(const unsigned long int &bval)
   return *this;
 }
 
+Coat &Coat::operator-=(const unsigned long int &bval)
+{
+  bitset<32> flipSet(bval);
+  flipSet.flip();
+  bitset<32> andBits = (this->getFullSet() & flipSet);
+  *this = Coat(andBits.to_ulong());
+  return *this;
+}
+
 ostream &operator<<(ostream &os, Coat &coat)
 {
   os << coat.getCoatName() << endl;
