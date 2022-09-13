@@ -125,3 +125,55 @@ void printBottomBorder()
 {
   cout << getBottomBorder();
 }
+
+void clearFullScreen()
+{
+  cout << "\e[1;1H";
+  cout << "\e[0J";
+  return;
+}
+
+void clearRestofScreen()
+{
+  cout << "\e[0J";
+  return;
+}
+
+void gotoLine(int lineFromTop)
+{
+  string commandStr = "\e[";
+  commandStr.append(to_string(lineFromTop));
+  commandStr.append(";1H");
+  cout << commandStr;
+  return;
+}
+
+void clearFullLine()
+{
+  cout << "\e[1G";
+  cout << "\e[1K";
+  return;
+}
+
+void clearRestOfLine()
+{
+  cout << "\e[1K";
+  return;
+}
+
+void gotoColumn(int colFromLeft)
+{
+  string cmdLine = "\e[";
+  cmdLine.append(to_string(colFromLeft));
+  cmdLine.append("G");
+  cout << cmdLine;
+  return;
+}
+
+int getIntSelect()
+{
+  int readVal = 0;
+  cout << "Enter selection: ";
+  cin >> readVal;
+  return readVal;
+}

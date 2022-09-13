@@ -21,3 +21,11 @@ void printTopBorder();
 void printInnerBorder();
 void printThickInnerBorder();
 void printBottomBorder();
+
+void clearFullScreen();
+void clearRestofScreen();
+void gotoLine(int lineFromTop);
+void clearFullLine();
+void clearRestOfLine();
+void gotoColumn(int colFromLeft);
+int getIntSelect();
