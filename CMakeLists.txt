@@ -21,6 +21,9 @@ set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 add_subdirectory(third-party/glfw-3.3.8)
 set(LIBRARIES ${LIBRARIES} glfw)
 
+include_directories(third-party/glm-0.9.9.7/)
+
+
 find_package(OpenGL REQUIRED)
 set(LIBRARIES ${LIBRARIES} ${OPENGL_gl_LIBRARY})
 
@@ -55,6 +58,7 @@ endif()
 
 # Compile our main application
 file(GLOB SOURCES
+  src/opengl/*
   src/classes/*
   src/main.cpp
     #third-party/glew-2.1.0/src/glew.c
@@ -62,6 +66,12 @@ file(GLOB SOURCES
 set(INCLUDES ${INCLUDES} src)
 
 set(APP_NAME "unnamed-horse-game")
+
+file(GLOB files src/shaders/*)
+foreach(file ${files})
+	get_filename_component(name ${file} NAME)
+	configure_file(${file} shaders/${name})
+endforeach()
 
 
 add_executable(${APP_NAME} ${SOURCES})

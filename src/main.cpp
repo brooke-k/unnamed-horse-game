@@ -28,6 +28,16 @@ void framebuffer_size_callback(GLFWwindow *window, int width, int height)
   glViewport(0, 0, width, height);
 }
 
+void checkInputs(GLFWwindow *window);
+
+void checkInputs(GLFWwindow *window)
+{
+  if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+  {
+    glfwSetWindowShouldClose(window, true);
+  }
+}
+
 int main(void)
 {
   glfwInit();
@@ -75,9 +85,14 @@ int main(void)
 
   while (!glfwWindowShouldClose(window))
   {
-    glfwSwapBuffers(window);
+
+    glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    checkInputs(window);
     glfwPollEvents();
-    EEE.createCustomEquid();
+    glfwSwapBuffers(window);
+    // EEE.createCustomEquid();
   }
   glfwTerminate();
   return 0;
